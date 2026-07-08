@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lexicon | Γλώσσα • Μάθηση • Δημιουργία</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f3f8ff;
+color:#2b2b2b;
+overflow-x:hidden;
+}
+
+body.dark{
+background:#10151f;
+color:white;
+}
+
+body.dark .card,
+body.dark .feature,
+body.dark .program{
+background:#1b2434;
+color:white;
+}
+
+body.dark nav{
+background:#0d1626;
+}
+
+body.dark footer{
+background:#0d1626;
+}
+
+body.dark .stats{
+background:#13213d;
+}
+
+body.dark .contact-card{
+background:#1b2434;
+}
+
+body.dark .faq-item{
+background:#1b2434;
+}
+
+body.dark .gallery img{
+border:3px solid #2d4d86;
+}
+
+::-webkit-scrollbar{
+width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+background:#1565c0;
+border-radius:20px;
+}
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 8%;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+z-index:999;
+transition:.3s;
+}
+
+.logo{
+font-size:30px;
+font-weight:800;
+color:#1565c0;
+}
+
+nav ul{
+display:flex;
+gap:30px;
+list-style:none;
+}
+
+nav ul li a{
+text-decoration:none;
+color:#333;
+font-weight:600;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#1565c0;
+}
+
+.darkBtn{
+background:#1565c0;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:30px;
+cursor:pointer;
+font-weight:600;
+}
+
+header{
+
+background:
+linear-gradient(rgba(13,71,161,.82),rgba(66,165,245,.82)),
+url("https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1800&q=80");
+
+background-size:cover;
+background-position:center;
+
+height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+
+color:white;
+position:relative;
+overflow:hidden;
+
+}
+
+header::after{
+
+content:"";
+
+position:absolute;
+
+width:700px;
+height:700px;
+
+background:rgba(255,255,255,.08);
+
+border-radius:50%;
+
+right:-220px;
+top:-220px;
+
+animation:float 7s infinite alternate;
+
+}
+
+@keyframes float{
+
+from{
+transform:translateY(0px);
+}
+
+to{
+transform:translateY(35px);
+}
+
+}
+
+.hero{
+position:relative;
+z-index:2;
+max-width:900px;
+}
+
+.hero h1{
+
+font-size:72px;
+
+margin-bottom:20px;
+
+font-weight:800;
+
+}
+
+.hero p{
+
+font-size:24px;
+
+line-height:1.7;
+
+}
+
+.hero-buttons{
+
+margin-top:40px;
+
+display:flex;
+
+justify-content:center;
+
+gap:20px;
+
+flex-wrap:wrap;
+
+}
+
+.hero button{
+
+padding:17px 40px;
+
+border:none;
+
+font-size:18px;
+
+font-weight:bold;
+
+border-radius:50px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.primary{
+
+background:white;
+
+color:#1565c0;
+
+}
+
+.secondary{
+
+background:transparent;
+
+border:2px solid white;
+
+color:white;
+
+}
+
+.hero button:hover{
+
+transform:translateY(-5px);
+
+}
+
+.container{
+
+width:90%;
+
+max-width:1200px;
+
+margin:auto;
+
+}
+
+section{
+
+padding:90px 0;
+
+}
+
+.title{
+
+text-align:center;
+
+font-size:40px;
+
+color:#1565c0;
+
+margin-bottom:20px;
+
+}
+
+.subtitle{
+
+text-align:center;
+
+margin-bottom:50px;
+
+font-size:18px;
+
+color:#666;
+
+}
+
+.card{
+
+background:white;
+
+padding:40px;
+
+border-radius:20px;
+
+box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+line-height:1.9;
+
+font-size:18px;
+
+}
+
+.features{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:25px;
+
+margin-top:40px;
+
+}
+
+.feature{
+
+background:white;
+
+padding:30px;
+
+border-radius:20px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+text-align:center;
+
+transition:.3s;
+
+}
+
+.feature:hover{
+
+transform:translateY(-10px);
+
+}
+
+.feature span{
+
+font-size:55px;
+
+display:block;
+
+margin-bottom:15px;
+
+}
+
+.stats{
+
+background:linear-gradient(135deg,#1565c0,#42a5f5);
+
+color:white;
+
+padding:80px 20px;
+
+}
+
+.stats-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:30px;
+
+text-align:center;
+
+}
+
+.stats h3{
+
+font-size:50px;
+
+}
+
+.programs{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:25px;
+
+}
+
+.program{
+
+background:white;
+
+padding:30px;
+
+border-radius:18px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+.program:hover{
+
+transform:scale(1.04);
+
+}
+
+.gallery{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:20px;
+
+}
+
+.gallery img{
+
+width:100%;
+
+height:220px;
+
+object-fit:cover;
+
+border-radius:20px;
+
+transition:.4s;
+
+}
+
+.gallery img:hover{
+
+transform:scale(1.05);
+
+}
+
+.review{
+
+background:white;
+
+padding:30px;
+
+border-radius:20px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+margin-bottom:25px;
+
+}
+
+.faq-item{
+
+background:white;
+
+padding:25px;
+
+border-radius:18px;
+
+margin-bottom:15px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.contact{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+
+gap:40px;
+
+align-items:center;
+
+}
+
+.contact-card{
+
+background:white;
+
+padding:35px;
+
+border-radius:20px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+line-height:2;
+
+}
+
+iframe{
+
+width:100%;
+
+height:380px;
+
+border:none;
+
+border-radius:20px;
+
+}
+
+footer{
+
+background:#1565c0;
+
+color:white;
+
+text-align:center;
+
+padding:35px;
+
+margin-top:70px;
+
+}
+
+#topBtn{
+
+position:fixed;
+
+right:25px;
+
+bottom:25px;
+
+background:#1565c0;
+
+color:white;
+
+border:none;
+
+width:60px;
+
+height:60px;
+
+font-size:22px;
+
+border-radius:50%;
+
+cursor:pointer;
+
+display:none;
+
+box-shadow:0 10px 25px rgba(0,0,0,.3);
+
+}
+
+@media(max-width:850px){
+
+.hero h1{
+
+font-size:48px;
+
+}
+
+.hero p{
+
+font-size:18px;
+
+}
+
+nav ul{
+
+display:none;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">LEXICON</div>
+
+<ul>
+
+<li><a href="#about">Σχετικά</a></li>
+
+<li><a href="#programs">Προγράμματα</a></li>
+
+<li><a href="#gallery">Gallery</a></li>
+
+<li><a href="#contact">Επικοινωνία</a></li>
+
+</ul>
+
+<button class="darkBtn" onclick="toggleDark()">🌙 Dark</button>
+
+</nav>
+
+<header>
+
+<div class="hero">
+
+<h1>LEXICON</h1>
+
+<p>
+
+Γλώσσα • Μάθηση • Δημιουργία
+
+<br><br>
+
+Από τον Ιούνιο του 2000, το Lexicon αποτελεί σημείο αναφοράς για τη γλώσσα, τη μάθηση και την παιδική ανάπτυξη, προσφέροντας εξατομικευμένη υποστήριξη σε παιδιά και εφήβους.
+
+</p>
+
+<div class="hero-buttons">
+
+<button class="primary" onclick="location.href='#about'">
+Μάθετε περισσότερα
+</button>
+
+<button class="secondary" onclick="location.href='#contact'">
+Επικοινωνία
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+<div class="container">
+  <!-- ================= ABOUT ================= -->
+
+<section id="about">
+
+<h2 class="title">Σχετικά με το Lexicon</h2>
+
+<p class="subtitle">
+Από το 2000 δίπλα σε κάθε μαθητή με αγάπη, εμπειρία και υπευθυνότητα.
+</p>
+
+<div class="card">
+
+<p>
+
+Το <strong>Lexicon</strong> ιδρύθηκε τον <strong>Ιούνιο του 2000</strong> και από τότε αποτελεί ένα σημείο αναφοράς για τη γλώσσα, τη μάθηση και την παιδική ανάπτυξη στην ευρύτερη περιοχή.
+
+</p>
+
+<br>
+
+<p>
+
+Εστιάζει κυρίως στην υποστήριξη παιδιών και εφήβων μέσα από γλωσσικά και μαθησιακά προγράμματα, με ιδιαίτερη έμφαση στην εξατομικευμένη προσέγγιση.
+
+</p>
+
+<br>
+
+<p>
+
+Στόχος μας είναι κάθε μαθητής να αποκτά αυτοπεποίθηση, να εξελίσσει τις δεξιότητές του και να αγαπήσει πραγματικά τη μάθηση μέσα σε ένα ασφαλές και δημιουργικό περιβάλλον.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- ================= FEATURES ================= -->
+
+<section>
+
+<h2 class="title">Γιατί να επιλέξετε το Lexicon;</h2>
+
+<p class="subtitle">
+
+Με περισσότερα από 25 χρόνια εμπειρίας προσφέρουμε ποιοτική εκπαίδευση και προσωπική υποστήριξη.
+
+</p>
+
+<div class="features">
+
+<div class="feature">
+
+<span>📚</span>
+
+<h3>Αγάπη για τη γνώση</h3>
+
+<p>
+
+Καλλιεργούμε τη χαρά της μάθησης μέσα από σύγχρονες και ευχάριστες εκπαιδευτικές μεθόδους.
+
+</p>
+
+</div>
+
+
+
+<div class="feature">
+
+<span>📝</span>
+
+<h3>Γλωσσικές Δεξιότητες</h3>
+
+<p>
+
+Ενισχύουμε την ανάγνωση, τη γραφή, την ορθογραφία και την κατανόηση κάθε μαθητή.
+
+</p>
+
+</div>
+
+
+
+<div class="feature">
+
+<span>🎓</span>
+
+<h3>Εξατομικευμένη Προσέγγιση</h3>
+
+<p>
+
+Κάθε παιδί είναι μοναδικό και γι' αυτό το πρόγραμμα προσαρμόζεται στις ανάγκες του.
+
+</p>
+
+</div>
+
+
+
+<div class="feature">
+
+<span>❤️</span>
+
+<h3>Φιλικό Περιβάλλον</h3>
+
+<p>
+
+Ένας ζεστός και ασφαλής χώρος όπου οι μαθητές νιώθουν άνετα να εξελιχθούν.
+
+</p>
+
+</div>
+
+
+
+<div class="feature">
+
+<span>⭐</span>
+
+<h3>25+ Χρόνια Εμπειρίας</h3>
+
+<p>
+
+Από το 2000 μέχρι σήμερα, το Lexicon αποτελεί σταθερό σύμμαχο στην εκπαίδευση.
+
+</p>
+
+</div>
+
+
+
+<div class="feature">
+
+<span>🏆</span>
+
+<h3>Ποιότητα</h3>
+
+<p>
+
+Διδασκαλία με συνέπεια, υπευθυνότητα και υψηλό επίπεδο επαγγελματισμού.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- ================= STATS ================= -->
+
+<section class="stats">
+
+<div class="container">
+
+<h2 style="text-align:center;font-size:42px;margin-bottom:50px;color:white;">
+
+Το Lexicon με αριθμούς
+
+</h2>
+
+<div class="stats-grid">
+
+<div>
+
+<h3 id="years">26+</h3>
+
+<p>Χρόνια εμπειρίας</p>
+
+</div>
+
+<div>
+
+<h3 id="students">500+</h3>
+
+<p>Μαθητές που μας εμπιστεύτηκαν</p>
+
+</div>
+
+<div>
+
+<h3 id="support">100%</h3>
+
+<p>Αφοσίωση στους μαθητές</p>
+
+</div>
+
+<div>
+
+<h3>2000</h3>
+
+<p>Έτος ίδρυσης</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- ================= WHY US ================= -->
+
+<section>
+
+<h2 class="title">
+
+Η φιλοσοφία μας
+
+</h2>
+
+<p class="subtitle">
+
+Πιστεύουμε ότι κάθε μαθητής μπορεί να πετύχει όταν έχει τη σωστή καθοδήγηση.
+
+</p>
+
+<div class="card">
+
+<h3 style="color:#1565c0;margin-bottom:20px;">
+
+Το όραμά μας
+
+</h3>
+
+<p>
+
+Στο Lexicon πιστεύουμε ότι η μάθηση δεν είναι απλώς η απόκτηση γνώσεων αλλά μια διαδικασία ανάπτυξης, αυτοπεποίθησης και δημιουργίας.
+
+</p>
+
+<br>
+
+<p>
+
+Στόχος μας είναι να προσφέρουμε ποιοτική εκπαιδευτική υποστήριξη μέσα από ένα σύγχρονο, ασφαλές και ευχάριστο περιβάλλον, όπου κάθε παιδί μπορεί να εξελιχθεί σύμφωνα με τις δυνατότητές του.
+
+</p>
+
+<br>
+
+<p>
+
+Η εμπιστοσύνη που μας δείχνουν οι οικογένειες εδώ και περισσότερες από δύο δεκαετίες αποτελεί τη μεγαλύτερη επιβράβευση της προσπάθειάς μας.
+
+</p>
+
+</div>
+
+</section>
+<!-- ================= ΠΡΟΓΡΑΜΜΑΤΑ ================= -->
+
+<section id="programs">
+
+<h2 class="title">Τα Προγράμματά μας</h2>
+
+<p class="subtitle">
+Σχεδιασμένα ώστε κάθε μαθητής να αναπτύσσει τις δυνατότητές του.
+</p>
+
+<div class="programs">
+
+<div class="program">
+
+<h2>📖 Γλωσσικά Μαθήματα</h2>
+
+<br>
+
+<p>
+
+Ανάπτυξη λεξιλογίου, κατανόησης κειμένου, ορθογραφίας, γραπτής και προφορικής έκφρασης.
+
+</p>
+
+</div>
+
+<div class="program">
+
+<h2>📝 Μαθησιακή Υποστήριξη</h2>
+
+<br>
+
+<p>
+
+Εξατομικευμένη βοήθεια στις δυσκολίες μάθησης με σύγχρονες εκπαιδευτικές μεθόδους.
+
+</p>
+
+</div>
+
+<div class="program">
+
+<h2>👩‍🏫 Ατομικά Μαθήματα</h2>
+
+<br>
+
+<p>
+
+Προσαρμοσμένα στις ανάγκες κάθε μαθητή με προσωπική καθοδήγηση.
+
+</p>
+
+</div>
+
+<div class="program">
+
+<h2>🎨 Δημιουργικές Δραστηριότητες</h2>
+
+<br>
+
+<p>
+
+Δραστηριότητες που ενισχύουν τη δημιουργικότητα, τη συνεργασία και την αυτοπεποίθηση.
+
+</p>
+
+</div>
+
+<div class="program">
+
+<h2>🎯 Προετοιμασία</h2>
+
+<br>
+
+<p>
+
+Συστηματική προετοιμασία για εξετάσεις και σχολικές απαιτήσεις.
+
+</p>
+
+</div>
+
+<div class="program">
+
+<h2>🌟 Συνεχής Υποστήριξη</h2>
+
+<br>
+
+<p>
+
+Συνεργασία με γονείς και μαθητές ώστε να επιτυγχάνονται οι εκπαιδευτικοί στόχοι.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- ================= GALLERY ================= -->
+
+<section id="gallery">
+
+<h2 class="title">Gallery</h2>
+
+<p class="subtitle">
+
+Μερικές εικόνες που εκφράζουν το περιβάλλον μάθησης και δημιουργίας.
+
+</p>
+
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=80">
+
+<img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80">
+
+<img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=900&q=80">
+
+<img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=900&q=80">
+
+<img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80">
+
+<img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80">
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- ================= CALL TO ACTION ================= -->
+
+<section>
+
+<div class="card" style="text-align:center;">
+
+<h2 style="margin-bottom:20px;color:#1565c0;">
+
+✨ Μαζί χτίζουμε το μέλλον κάθε μαθητή.
+
+</h2>
+
+<p style="font-size:19px;line-height:1.9;">
+
+Στο <strong>Lexicon</strong>, κάθε παιδί αντιμετωπίζεται με σεβασμό, ενδιαφέρον και υπευθυνότητα.
+Στόχος μας είναι να δημιουργούμε ένα περιβάλλον όπου η γνώση γίνεται εμπειρία και η μάθηση χαρά.
+
+</p>
+
+<br>
+
+<button class="primary" onclick="location.href='#contact'">
+
+Επικοινωνήστε μαζί μας
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ================= ΚΡΙΤΙΚΕΣ ================= -->
+
+<section id="reviews">
+
+<h2 class="title">Τι λένε οι γονείς</h2>
+
+<p class="subtitle">
+Η εμπιστοσύνη των οικογενειών είναι η μεγαλύτερη επιβράβευσή μας.
+</p>
+
+
+<div class="features">
+
+
+<div class="review">
+
+<h3 style="color:#1565c0;">
+⭐⭐⭐⭐⭐
+</h3>
+
+<br>
+
+<p>
+
+"Ένας εξαιρετικός χώρος μάθησης με ανθρώπους που ενδιαφέρονται πραγματικά για τα παιδιά. Η πρόοδος ήταν εμφανής από τους πρώτους μήνες."
+
+</p>
+
+<br>
+
+<strong>
+— Γονέας μαθητή
+</strong>
+
+</div>
+
+
+
+<div class="review">
+
+<h3 style="color:#1565c0;">
+⭐⭐⭐⭐⭐
+</h3>
+
+<br>
+
+<p>
+
+"Το Lexicon βοήθησε το παιδί μας να αποκτήσει μεγαλύτερη αυτοπεποίθηση και αγάπη για τη μάθηση."
+
+</p>
+
+<br>
+
+<strong>
+— Οικογένεια Lexicon
+</strong>
+
+</div>
+
+
+
+<div class="review">
+
+<h3 style="color:#1565c0;">
+⭐⭐⭐⭐⭐
+</h3>
+
+<br>
+
+<p>
+
+"Πολύ φιλικό περιβάλλον, σωστή καθοδήγηση και άριστη επικοινωνία με τους γονείς."
+
+</p>
+
+<br>
+
+<strong>
+— Γονέας μαθητή
+</strong>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- ================= VALUES ================= -->
+
+<section>
+
+<h2 class="title">
+Οι αξίες μας
+</h2>
+
+<p class="subtitle">
+Αρχές που καθοδηγούν κάθε μας προσπάθεια.
+</p>
+
+
+<div class="features">
+
+
+<div class="feature">
+
+<span>🤝</span>
+
+<h3>Σεβασμός</h3>
+
+<p>
+Δημιουργούμε σχέσεις εμπιστοσύνης με μαθητές και οικογένειες.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<span>💡</span>
+
+<h3>Καινοτομία</h3>
+
+<p>
+Χρησιμοποιούμε σύγχρονες μεθόδους για καλύτερη μάθηση.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<span>🌱</span>
+
+<h3>Ανάπτυξη</h3>
+
+<p>
+Βοηθάμε κάθε μαθητή να εξελιχθεί με τον δικό του ρυθμό.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<span>🏫</span>
+
+<h3>Εμπειρία</h3>
+
+<p>
+Πάνω από δύο δεκαετίες παρουσίας στην εκπαίδευση.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- ================= FINAL MESSAGE ================= -->
+
+<section>
+
+<div class="quote">
+
+<p>
+
+"Στο Lexicon δεν διδάσκουμε μόνο γνώσεις.
+Δημιουργούμε τις βάσεις ώστε κάθε μαθητής να πιστέψει στον εαυτό του και στις δυνατότητές του."
+
+</p>
+
+</div>
+
+</section>
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact">
+
+<h2 class="title">Επικοινωνία</h2>
+
+<p class="subtitle">
+Επικοινωνήστε μαζί μας για περισσότερες πληροφορίες.
+</p>
+
+
+<div class="contact">
+
+
+<div class="contact-card">
+
+<h2 style="color:#1565c0;">
+LEXICON
+</h2>
+
+<br>
+
+
+<p>
+📍 <strong>Διεύθυνση</strong><br>
+
+Υψηλάντου 100<br>
+Κερατσίνι (Άγιος Μηνάς)
+
+</p>
+
+
+<br>
+
+
+<p>
+☎️ <strong>Τηλέφωνο</strong><br>
+
+<a href="tel:2104014838" style="color:#1565c0;text-decoration:none;font-weight:bold;">
+
+210 401 4838
+
+</a>
+
+</p>
+
+
+<br>
+
+
+<p>
+📧 <strong>Email</strong><br>
+
+<a href="mailto:lexicon100@gmail.com" style="color:#1565c0;text-decoration:none;font-weight:bold;">
+
+lexicon100@gmail.com
+
+</a>
+
+</p>
+
+
+<br>
+
+
+<p>
+
+🕒 <strong>Επικοινωνήστε μαζί μας</strong><br>
+
+Η ομάδα του Lexicon είναι έτοιμη να σας ενημερώσει.
+
+</p>
+
+
+<br>
+
+
+<button class="primary" onclick="window.location.href='tel:2104014838'">
+
+📞 Καλέστε τώρα
+
+</button>
+
+
+</div>
+
+
+
+
+
+<div>
+
+<iframe
+
+src="https://www.google.com/maps?q=Υψηλάντου+100+Κερατσίνι&output=embed"
+
+loading="lazy">
+
+</iframe>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+
+
+<!-- ================= NEWSLETTER / CTA ================= -->
+
+
+<section>
+
+<div class="quote">
+
+
+<h2 style="color:white;">
+
+Γίνετε μέρος της οικογένειας Lexicon
+
+</h2>
+
+
+<br>
+
+
+<p>
+
+Η σωστή εκπαίδευση ξεκινά από ένα περιβάλλον που εμπνέει, υποστηρίζει και ενθαρρύνει κάθε μαθητή.
+
+</p>
+
+
+</div>
+
+</section>
+<!-- ================= BACK TO TOP ================= -->
+
+<button id="topBtn" onclick="topFunction()">
+⬆️
+</button>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<h2 style="color:white;">
+LEXICON
+</h2>
+
+<br>
+
+<p>
+Γλώσσα • Μάθηση • Δημιουργία
+</p>
+
+<br>
+
+<p>
+© 2000 - 2026 Lexicon | Όλα τα δικαιώματα διατηρούνται.
+</p>
+
+</footer>
+
+
+
+
+</div>
+
+
+<script>
+
+
+// ================= DARK MODE =================
+
+
+function toggleDark(){
+
+document.body.classList.toggle("dark");
+
+}
+
+
+
+
+
+// ================= BACK TO TOP =================
+
+
+let topButton = document.getElementById("topBtn");
+
+
+window.onscroll = function(){
+
+scrollFunction();
+
+};
+
+
+function scrollFunction(){
+
+if(document.body.scrollTop > 500 || document.documentElement.scrollTop > 500){
+
+topButton.style.display="block";
+
+}
+
+else{
+
+topButton.style.display="none";
+
+}
+
+}
+
+
+
+function topFunction(){
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+}
+
+
+
+
+
+// ================= SCROLL ANIMATION =================
+
+
+const elements = document.querySelectorAll(
+".feature, .program, .review, .card"
+);
+
+
+
+const observer = new IntersectionObserver(
+
+(entries)=>{
+
+
+entries.forEach(entry=>{
+
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity="1";
+
+entry.target.style.transform="translateY(0)";
+
+}
+
+
+});
+
+
+},
+
+{
+
+threshold:0.15
+
+}
+
+);
+
+
+
+elements.forEach(el=>{
+
+
+el.style.opacity="0";
+
+el.style.transform="translateY(40px)";
+
+el.style.transition="all .7s ease";
+
+
+observer.observe(el);
+
+
+});
+
+
+
+
+
+// ================= SMOOTH LINKS =================
+
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+
+
+anchor.addEventListener("click",function(e){
+
+
+e.preventDefault();
+
+
+document.querySelector(this.getAttribute("href"))
+.scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+
+});
+
+
+});
+
+
+
+
+
+// ================= WELCOME MESSAGE =================
+
+
+window.onload=function(){
+
+
+console.log(
+"Welcome to Lexicon website!"
+);
+
+
+};
+
+
+
+</script>
+
+
+</body>
+
+</html>
