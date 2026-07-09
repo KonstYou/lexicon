@@ -832,15 +832,17 @@ display:none;
 
 <div>
 
-<h3 id="years">26+</h3>
+<h3 class="counter" data-target="26">0</h3>
+<p>Χρόνια εμπειρίας</p>
 
 <p>Χρόνια εμπειρίας</p>
 
 </div>
 
 <div>
-
-<h3 id="students">700+</h3>
+  
+<h3 class="counter" data-target="700">0</h3>
+<p>Μαθητές που μας εμπιστεύτηκαν</p>
 
 <p>Μαθητές που μας εμπιστεύτηκαν</p>
 
@@ -848,7 +850,8 @@ display:none;
 
 <div>
 
-<h3 id="support">100%</h3>
+<h3 class="counter" data-target="100">0</h3>
+<p>Επιτυχία στις πιστοποιήσεις</p>
 
 <p>Επιτυχία στις πιστοποιήσεις</p>
 
@@ -1625,7 +1628,69 @@ console.log(
 };
 
 
+// ================= COUNTER ANIMATION =================
 
+const counters = document.querySelectorAll(".counter");
+
+const startCounters = () => {
+
+counters.forEach(counter => {
+
+counter.innerText = "0";
+
+const target = +counter.getAttribute("data-target");
+
+const updateCounter = () => {
+
+const current = +counter.innerText;
+
+const increment = target / 100;
+
+if(current < target){
+
+counter.innerText = Math.ceil(current + increment);
+
+setTimeout(updateCounter, 20);
+
+}
+else{
+
+counter.innerText = target + "+";
+
+}
+
+};
+
+updateCounter();
+
+});
+
+};
+
+
+const counterSection = document.querySelector(".stats");
+
+
+const counterObserver = new IntersectionObserver((entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+startCounters();
+
+counterObserver.disconnect();
+
+}
+
+});
+
+});
+
+
+counterObserver.observe(counterSection);
+
+  
 </script>
 
 
