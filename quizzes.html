@@ -2,308 +2,421 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lexicon | Quiz Platform</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
-body{
-background:#f3f8ff;
-color:#2b2b2b;
-min-height:100vh;
-padding:40px 20px;
-transition:.3s;
-}
-body.dark{
-background:#10151f;
-color:white;
-}
-.container{
-width:95%;
-max-width:800px;
-margin:auto;
-}
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:40px;
-background:white;
-padding:20px;
-border-radius:20px;
-box-shadow:0 10px 25px rgba(0,0,0,.05);
-transition:.3s;
-}
-body.dark header{
-background:#1b2434;
-}
-.logo-title {
-color:#1565c0;
-font-weight:800;
-font-size:24px;
-text-decoration:none;
-}
-body.dark .logo-title {
-color:#42a5f5;
-}
-.btn{
-background:#1565c0;
-color:white;
-border:none;
-padding:10px 20px;
-border-radius:30px;
-cursor:pointer;
-font-weight:600;
-transition:.3s;
-text-decoration:none;
-display:inline-block;
-}
-.btn:hover{
-transform:translateY(-2px);
-box-shadow:0 5px 15px rgba(21,101,192,.3);
-}
-.btn-secondary{
-background:#e0e0e0;
-color:#333;
-margin-right:10px;
-}
-body.dark .btn-secondary{
-background:#2d4d86;
-color:white;
-}
-.card{
-background:white;
-padding:40px;
-border-radius:20px;
-box-shadow:0 15px 35px rgba(0,0,0,.08);
-margin-bottom:25px;
-transition:.3s;
-}
-body.dark .card{
-background:#1b2434;
-}
-h2 {
-color:#1565c0;
-margin-bottom:20px;
-}
-body.dark h2 {
-color:#42a5f5;
-}
-/* Grid για τις τάξεις */
-.grid {
-display:grid;
-grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
-gap:20px;
-margin-top:20px;
-}
-.class-box, .quiz-box {
-background:#f8faff;
-border:2px solid #e3efff;
-padding:25px;
-border-radius:15px;
-text-align:center;
-cursor:pointer;
-transition:.3s;
-font-weight:600;
-font-size:18px;
-}
-body.dark .class-box, body.dark .quiz-box {
-background:#13213d;
-border-color:#2d4d86;
-}
-.class-box:hover, .quiz-box:hover {
-transform:translateY(-5px);
-border-color:#1565c0;
-background:#eef5ff;
-}
-body.dark .class-box:hover, body.dark .quiz-box:hover {
-background:#1c2e54;
-border-color:#42a5f5;
-}
-/* Στυλ Ερωτήσεων Quiz */
-.question-text {
-font-size:20px;
-font-weight:600;
-margin-bottom:25px;
-line-height:1.5;
-}
-.options-list {
-list-style:none;
-display:flex;
-flex-direction:column;
-gap:15px;
-}
-.option-btn {
-width:100%;
-text-align:left;
-padding:15px 20px;
-background:#f8faff;
-border:2px solid #e3efff;
-border-radius:12px;
-cursor:pointer;
-font-size:16px;
-font-weight:600;
-transition:.2s;
-}
-body.dark .option-btn {
-background:#13213d;
-border-color:#2d4d86;
-color:white;
-}
-.option-btn:hover {
-background:#eef5ff;
-border-color:#1565c0;
-}
-body.dark .option-btn:hover {
-background:#1c2e54;
-}
-.option-btn.selected {
-background:#1565c0;
-color:white;
-border-color:#1565c0;
-}
-.progress-bar-container {
-width:100%;
-height:8px;
-background:#eee;
-border-radius:10px;
-margin-bottom:30px;
-overflow:hidden;
-}
-body.dark .progress-bar-container {
-background:#2d4d86;
-}
-.progress-bar {
-height:100%;
-width:0%;
-background:#1565c0;
-transition:.3s;
-}
-body.dark .progress-bar {
-background:#42a5f5;
-}
-.score-text {
-font-size:24px;
-font-weight:800;
-text-align:center;
-margin:20px 0;
-color:#2e7d32;
-}
-body.dark .score-text {
-color:#81c784;
-}
-.hidden {
-display:none !important;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lexicon | Premium Quiz Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1565c0;
+            --primary-light: #42a5f5;
+            --bg-light: #f3f8ff;
+            --card-light: #ffffff;
+            --text-light: #2b2b2b;
+            --border-light: #e3efff;
+            
+            --bg-dark: #10151f;
+            --card-dark: #1b2434;
+            --text-dark: #ffffff;
+            --border-dark: #2d4d86;
+            
+            --success: #2e7d32;
+            --error: #c62828;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--bg-light);
+            color: var(--text-light);
+            min-height: 100vh;
+            padding: 40px 20px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.dark {
+            background: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        .container {
+            width: 95%;
+            max-width: 750px;
+            margin: auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: var(--card-light);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,.04);
+            transition: 0.3s;
+        }
+
+        body.dark header {
+            background: var(--card-dark);
+        }
+
+        .logo-title {
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 24px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        body.dark .logo-title {
+            color: var(--primary-light);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s ease-in-out;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(21,101,192,.3);
+        }
+
+        .btn-secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        body.dark .btn-secondary {
+            background: #2d4d86;
+            color: white;
+        }
+
+        .card {
+            background: var(--card-light);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0,0,0,.06);
+            margin-bottom: 25px;
+            transition: 0.3s;
+        }
+
+        body.dark .card {
+            background: var(--card-dark);
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        body.dark h2 {
+            color: var(--primary-light);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .class-box, .quiz-box {
+            background: #f8faff;
+            border: 2px solid var(--border-light);
+            padding: 25px;
+            border-radius: 18px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.25s ease;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        body.dark .class-box, body.dark .quiz-box {
+            background: #13213d;
+            border-color: var(--border-dark);
+        }
+
+        .class-box:hover, .quiz-box:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            background: #eef5ff;
+        }
+
+        body.dark .class-box:hover, body.dark .quiz-box:hover {
+            background: #1c2e54;
+            border-color: var(--primary-light);
+        }
+
+        .question-text {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            width: 100%;
+            text-align: left;
+            padding: 16px 22px;
+            background: #f8faff;
+            border: 2px solid var(--border-light);
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            color: inherit;
+            transition: 0.2s ease;
+        }
+
+        body.dark .option-btn {
+            background: #13213d;
+            border-color: var(--border-dark);
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background: #eef5ff;
+            border-color: var(--primary);
+        }
+
+        body.dark .option-btn:hover:not(:disabled) {
+            background: #1c2e54;
+        }
+
+        /* Καταστάσεις Απαντήσεων */
+        .option-btn.correct {
+            background: var(--success) !important;
+            border-color: var(--success) !important;
+            color: white !important;
+        }
+
+        .option-btn.wrong {
+            background: var(--error) !important;
+            border-color: var(--error) !important;
+            color: white !important;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 10px;
+            background: #eee;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        body.dark .progress-bar-container {
+            background: var(--border-dark);
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        body.dark .progress-bar {
+            background: var(--primary-light);
+        }
+
+        .score-text {
+            font-size: 32px;
+            font-weight: 800;
+            text-align: center;
+            margin: 20px 0;
+            color: var(--success);
+        }
+
+        body.dark .score-text {
+            color: #81c784;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .footer-credit {
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 
 <div class="container">
-<header>
-<a href="index.html" class="logo-title">LEXICON QUIZ</a>
-<button class="btn" onclick="toggleDark()">🌙 Dark</button>
-</header>
+    <header>
+        <a href="#" class="logo-title" onclick="showClasses(); return false;">
+            <img src="https://i.ibb.co/4ZvfRB5q/Lexicon.png" alt="Logo" style="height:30px; width:auto; onerror='this.style.display=\"none\"'"> 
+            LEXICON QUIZ
+        </a>
+        <button class="btn btn-secondary" onclick="toggleDark()" id="theme-btn">🌙 Dark Mode</button>
+    </header>
 
-<!-- ΟΘΟΝΗ 1: ΕΠΙΛΟΓΗ ΤΑΞΗΣ -->
-<div id="class-screen" class="card">
-<h2>Επίλεξε την Τάξη σου:</h2>
-<div class="grid">
-<div class="class-box" onclick="selectClass('A Class')">🇬🇧 A Class</div>
-<div class="class-box" onclick="selectClass('B Class')">🇬🇧 B Class</div>
-<div class="class-box" onclick="selectClass('C Class')">🇬🇧 C Class</div>
-<div class="class-box" onclick="selectClass('D Class')">🇬🇧 D Class</div>
-</div>
-</div>
+    <!-- ΟΘΟΝΗ 1: ΕΠΙΛΟΓΗ ΠΑΝΕΛ / ΤΑΞΗΣ -->
+    <div id="class-screen" class="card">
+        <h2>Επίλεξε Επίπεδο Σπουδών:</h2>
+        <div class="grid">
+            <div class="class-box" onclick="selectClass('A Class')">🇬🇧 A Class (Elementary)</div>
+            <div class="class-box" onclick="selectClass('B Class')">🇬🇧 B Class (Pre-Inter)</div>
+            <div class="class-box" onclick="selectClass('C Class')">🇬🇧 C Class (Intermediate)</div>
+            <div class="class-box" onclick="selectClass('D Class')">🇬🇧 D Class (Advanced)</div>
+        </div>
+    </div>
 
-<!-- ΟΘΟΝΗ 2: ΕΠΙΛΟΓΗ ΚΟΥΙΖ -->
-<div id="quiz-screen" class="card hidden">
-<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-<h2 id="selected-class-title">Κουίζ για την τάξη</h2>
-<button class="btn btn-secondary" onclick="showClasses()">⬅️ Πίσω</button>
-</div>
-<div class="grid" id="quizzes-list">
-<!-- Εδώ μπαίνουν δυναμικά τα κουίζ της τάξης -->
-</div>
-</div>
+    <!-- ΟΘΟΝΗ 2: ΕΠΙΛΟΓΗ ΚΟΥΙΖ -->
+    <div id="quiz-screen" class="card hidden">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h2 id="selected-class-title">Διαθέσιμα Κουίζ</h2>
+            <button class="btn btn-secondary" onclick="showClasses()">⬅️ Πίσω</button>
+        </div>
+        <div class="grid" id="quizzes-list"></div>
+    </div>
 
-<!-- ΟΘΟΝΗ 3: ΠΕΡΙΒΑΛΛΟΝ ΔΙΕΞΑΓΩΓΗΣ ΚΟΥΙΖ -->
-<div id="play-screen" class="card hidden">
-<div class="progress-bar-container">
-<div class="progress-bar" id="progress"></div>
-</div>
-<div class="question-text" id="question-field">Η ερώτηση εδώ...</div>
-<div class="options-list" id="options-field">
-<!-- Εδώ μπαίνουν οι επιλογές -->
-</div>
-<div style="margin-top:30px; text-align:right;">
-<button class="btn" id="next-btn" onclick="nextQuestion()">Επόμενο ➡️</button>
-</div>
-</div>
+    <!-- ΟΘΟΝΗ 3: ΠΕΡΙΒΑΛΛΟΝ ΔΙΕΞΑΓΩΓΗΣ ΚΟΥΙΖ -->
+    <div id="play-screen" class="card hidden">
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progress"></div>
+        </div>
+        <div class="question-text" id="question-field">Η ερώτηση φορτώνει...</div>
+        <div class="options-list" id="options-field"></div>
+        
+        <div style="margin-top:30px; display:flex; justify-content:space-between; align-items:center;">
+            <span id="q-counter" style="font-weight:600; opacity:0.7;">Ερώτηση 1 από 5</span>
+            <button class="btn" id="next-btn" onclick="nextQuestion()" disabled>Επόμενο ➡️</button>
+        </div>
+    </div>
 
-<!-- ΟΘΟΝΗ 4: ΑΠΟΤΕΛΕΣΜΑΤΑ -->
-<div id="result-screen" class="card hidden" style="text-align:center;">
-<h2>Το κουίζ ολοκληρώθηκε!</h2>
-<div class="score-text" id="score-field">Σκορ: 0 / 0</div>
-<p style="font-size:18px; margin-bottom:30px;">Μπράβο για την προσπάθειά σου!</p>
-<button class="btn" onclick="showClasses()">Αρχική Σελίδα Κουίζ</button>
-</div>
+    <!-- ΟΘΟΝΗ 4: ΑΠΟΤΕΛΕΣΜΑΤΑ -->
+    <div id="result-screen" class="card hidden" style="text-align:center;">
+        <h2>Το κουίζ ολοκληρώθηκε!</h2>
+        <div class="score-text" id="score-field">Σκορ: 0 / 0</div>
+        <p id="feedback-message" style="font-size:18px; margin-bottom:30px;">Μπράβο για την προσπάθειά σου!</p>
+        <button class="btn" onclick="showClasses()">🔄 Δοκίμασε άλλο Κουίζ</button>
+    </div>
 
+    <div class="footer-credit">Lexicon Quizzes Platform &copy; 2026</div>
 </div>
 
 <script>
-// ================= ΔΕΔΟΜΕΝΑ ΚΟΥΙΖ (Μπορείς να αλλάξεις/προσθέσεις ερωτήσεις εδώ) =================
+// ================= ΕΜΠΛΟΥΤΙΣΜΕΝΑ ΔΕΔΟΜΕΝΑ ΚΟΥΙΖ (40 ΕΡΩΤΗΣΕΙΣ) =================
 const quizData = {
-"A Class": [
-{
-title: "Quiz 1: Present Simple",
-questions: [
-{ q: "He _______ to school every day.", a: ["go", "goes", "going"], correct: 1 },
-{ q: "Do you like apples? Yes, I _______.", a: ["do", "like", "am"], correct: 0 },
-{ q: "They _______ play football on Mondays.", a: ["not", "doesn't", "don't"], correct: 2 }
-]
-},
-{
-title: "Quiz 2: Plural Number",
-questions: [
-{ q: "One boy, two _______.", a: ["boys", "boies", "boyes"], correct: 0 },
-{ q: "One child, three _______.", a: ["childs", "children", "childrens"], correct: 1 }
-]
-}
-],
-"B Class": [
-{
-title: "Quiz 1: Past Simple",
-questions: [
-{ q: "Yesterday, she _______ a movie.", a: ["watch", "watched", "watching"], correct: 1 },
-{ q: "Where _______ you go last Sunday?", a: ["did", "do", "were"], correct: 0 }
-]
-}
-],
-"C Class": [
-{
-title: "Quiz 1: Comparative Forms",
-questions: [
-{ q: "An elephant is _______ than a mouse.", a: ["big", "bigger", "biggest"], correct: 1 },
-{ q: "This is the _______ book in the library.", a: ["interesting", "more interesting", "most interesting"], correct: 2 }
-]
-}
-],
-"D Class": [
-{
-title: "Quiz 1: Present Perfect",
-questions: [
-{ q: "I have _______ to London twice.", a: ["been", "gone", "be"], correct: 0 },
-{ q: "She has _______ her homework yet.", a: ["finish", "not finished", "finished"], correct: 1 }
-]
-}
-]
+    "A Class": [
+        {
+            title: "Quiz 1: Present Simple & Routines",
+            questions: [
+                { q: "He _______ to school every single day.", a: ["go", "goes", "going"], correct: 1 },
+                { q: "Do you like apples? Yes, I _______.", a: ["do", "like", "am"], correct: 0 },
+                { q: "They _______ play football on Mondays.", a: ["not", "doesn't", "don't"], correct: 2 },
+                { q: "What time _______ the train leave?", a: ["is", "do", "does"], correct: 2 },
+                { q: "Mary _______ breakfast at 8:00 AM.", a: ["has", "have", "eats some"], correct: 0 }
+            ]
+        },
+        {
+            title: "Quiz 2: Plurals & Countable Nouns",
+            questions: [
+                { q: "One boy, two _______.", a: ["boys", "boies", "boyes"], correct: 0 },
+                { q: "One child, three _______.", a: ["childs", "children", "childrens"], correct: 1 },
+                { q: "Look! Two _______ are running in the garden.", a: ["deers", "deer", "deeres"], correct: 1 },
+                { q: "I need to brush my _______ before going to bed.", a: ["tooths", "teeth", "teeths"], correct: 1 },
+                { q: "There are many _______ on the roof of the old house.", a: ["mouses", "mice", "mices"], correct: 1 }
+            ]
+        }
+    ],
+    "B Class": [
+        {
+            title: "Quiz 1: Past Simple & Continuous",
+            questions: [
+                { q: "Yesterday at 5 PM, she _______ a movie.", a: ["watched", "was watching", "is watching"], correct: 1 },
+                { q: "Where _______ you go last Sunday?", a: ["did", "do", "were"], correct: 0 },
+                { q: "While I _______ lunch, the phone rang.", a: ["cooked", "was cooking", "am cooking"], correct: 1 },
+                { q: "They _______ to the museum two days ago.", a: ["went", "go", "gone"], correct: 0 },
+                { q: "He dropped his phone while he _______.", a: ["ran", "was running", "runs"], correct: 1 }
+            ]
+        },
+        {
+            title: "Quiz 2: Modals & Everyday Actions",
+            questions: [
+                { q: "You _______ touch that iron! It's extremely hot.", a: ["must", "mustn't", "don't have to"], correct: 1 },
+                { q: "_______ you open the window for me, please?", a: ["Should", "Must", "Could"], correct: 2 },
+                { q: "Tomorrow is Sunday, so I _______ wake up early.", a: ["must not", "don't have to", "can't"], correct: 1 },
+                { q: "If you feel sick, you _______ see a doctor.", a: ["should", "ought", "might to"], correct: 0 },
+                { q: "I _______ swim when I was only five years old.", a: ["can", "could", "should"], correct: 1 }
+            ]
+        }
+    ],
+    "C Class": [
+        {
+            title: "Quiz 1: Comparatives & Superlatives",
+            questions: [
+                { q: "An elephant is much _______ than a small mouse.", a: ["big", "bigger", "biggest"], correct: 1 },
+                { q: "This is the _______ interesting book in the library.", a: ["more", "most", "much"], correct: 1 },
+                { q: "My English is getting _______ every day.", a: ["gooder", "better", "best"], correct: 1 },
+                { q: "Driving a car is _______ than riding a bicycle.", a: ["dangerous", "more dangerous", "most dangerous"], correct: 1 },
+                { q: "Mount Everest is the _______ mountain in the world.", a: ["higher", "highest", "most high"], correct: 1 }
+            ]
+        },
+        {
+            title: "Quiz 2: Future Tenses & Plans",
+            questions: [
+                { q: "Look at those dark clouds! It _______ rain.", a: ["will", "is going to", "rains"], correct: 1 },
+                { q: "I think people _______ live on Mars in the future.", a: ["will", "are going to", "shall"], correct: 0 },
+                { q: "This time next week, we _______ on a beach in Spain.", a: ["will sit", "are sitting", "will be sitting"], correct: 2 },
+                { q: "I _______ my dentist tomorrow at 10 o'clock.", a: ["see", "am seeing", "will seen"], correct: 1 },
+                { q: "Don't worry, I _______ you with your homework tonight.", a: ["help", "am helping", "will help"], correct: 2 }
+            ]
+        }
+    ],
+    "D Class": [
+        {
+            title: "Quiz 1: Present & Past Perfect Mastery",
+            questions: [
+                { q: "I _______ to London twice so far.", a: ["have been", "have gone", "was going"], correct: 0 },
+                { q: "She hasn't finished her project _______.", a: ["already", "just", "yet"], correct: 2 },
+                { q: "By the time the police arrived, the thief _______.", a: ["has escaped", "had escaped", "escaped"], correct: 1 },
+                { q: "We have lived in this town _______ ten years.", a: ["since", "for", "during"], correct: 1 },
+                { q: "This is the first time I _______ sushi.", a: ["ever eat", "have ever eaten", "had eaten"], correct: 1 }
+            ]
+        },
+        {
+            title: "Quiz 2: Conditionals & Advanced Structs",
+            questions: [
+                { q: "If you heat ice, it _______.", a: ["melts", "will melt", "melted"], correct: 0 },
+                { q: "If I _______ a lottery, I would buy a huge mansion.", a: ["win", "won", "had won"], correct: 1 },
+                { q: "If you had studied harder, you _______ the test.", a: ["passed", "would pass", "would have passed"], correct: 2 },
+                { q: "I wish I _______ more free time these days.", a: ["have", "had", "would have"], correct: 1 },
+                { q: "You won't pass the exam _______ you study every week.", a: ["if", "provided", "unless"], correct: 2 }
+            ]
+        }
+    ]
 };
 
 // ================= ΜΕΤΑΒΛΗΤΕΣ ΚΑΤΑΣΤΑΣΗΣ =================
@@ -311,221 +424,131 @@ let currentClass = "";
 let currentQuizIndex = null;
 let currentQuestionIndex = 0;
 let score = 0;
-let selectedOptionIndex = null;
+let hasAnswered = false;
 
-// ================= DARK MODE =================
+// ================= DARK MODE ENGINE =================
 function toggleDark(){
-document.body.classList.toggle("dark");
+    document.body.classList.toggle("dark");
+    const isDark = document.body.classList.contains("dark");
+    document.getElementById("theme-btn").innerText = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
 }
 
 // ================= ΠΛΟΗΓΗΣΗ ΟΘΟΝΩΝ =================
 function showClasses() {
-document.getElementById("class-screen").classList.remove("hidden");
-document.getElementById("quiz-screen").classList.add("hidden");
-document.getElementById("play-screen").classList.add("hidden");
-document.getElementById("result-screen").classList.add("hidden");
+    document.getElementById("class-screen").classList.remove("hidden");
+    document.getElementById("quiz-screen").classList.add("hidden");
+    document.getElementById("play-screen").classList.add("hidden");
+    document.getElementById("result-screen").classList.add("hidden");
 }
 
 function selectClass(className) {
-currentClass = className;
-document.getElementById("selected-class-title").innerText = "Κουίζ για την τάξη: " + className;
-const listDiv = document.getElementById("quizzes-list");
-listDiv.innerHTML = "";
+    currentClass = className;
+    document.getElementById("selected-class-title").innerText = "Κουίζ για την τάξη: " + className;
+    const listDiv = document.getElementById("quizzes-list");
+    listDiv.innerHTML = "";
 
-const classQuizzes = quizData[className] || [];
-if(classQuizzes.length === 0) {
-listDiv.innerHTML = "<p>Δεν υπάρχουν διαθέσιμα κουίζ για αυτή την τάξη ακόμη.</p>";
-} else {
-classQuizzes.forEach((quiz, index) => {
-const box = document.createElement("div");
-box.className = "quiz-box";
-box.innerText = quiz.title;
-box.onclick = () => startQuiz(index);
-listDiv.appendChild(box);
-});
+    const classQuizzes = quizData[className] || [];
+    classQuizzes.forEach((quiz, index) => {
+        const box = document.createElement("div");
+        box.className = "quiz-box";
+        box.innerHTML = `📝 <strong>${quiz.title}</strong><br><span style='font-size:12px; opacity:0.7;'>${quiz.questions.length} ερωτήσεις</span>`;
+        box.onclick = () => startQuiz(index);
+        listDiv.appendChild(box);
+    });
+
+    document.getElementById("class-screen").classList.add("hidden");
+    document.getElementById("quiz-screen").classList.remove("hidden");
 }
 
-document.getElementById("class-screen").classList.add("hidden");
-document.getElementById("quiz-screen").classList.remove("hidden");
-}
-
-// ================= ΕΝΑΡΞΗ ΚΟΥΙΖ =================
+// ================= ΡΟΗ ΠΑΙΧΝΙΔΙΟΥ =================
 function startQuiz(quizIndex) {
-currentQuizIndex = quizIndex;
-currentQuestionIndex = 0;
-score = 0;
-document.getElementById("quiz-screen").classList.add("hidden");
-document.getElementById("play-screen").classList.remove("hidden");
-loadQuestion();
+    currentQuizIndex = quizIndex;
+    currentQuestionIndex = 0;
+    score = 0;
+    document.getElementById("quiz-screen").classList.add("hidden");
+    document.getElementById("play-screen").classList.remove("hidden");
+    loadQuestion();
 }
 
-// ================= ΦΟΡΤΩΣΗ ΕΡΩΤΗΣΗΣ =================
 function loadQuestion() {
-selectedOptionIndex = null;
-const quiz = quizData[currentClass][currentQuizIndex];
-const currentQuestion = quiz.questions[currentQuestionIndex];
+    hasAnswered = false;
+    document.getElementById("next-btn").disabled = true;
+    
+    const quiz = quizData[currentClass][currentQuizIndex];
+    const currentQuestion = quiz.questions[currentQuestionIndex];
 
-// Μπάρα προόδου
-const progressPercent = (currentQuestionIndex / quiz.questions.length) * 100;
-document.getElementById("progress").style.width = progressPercent + "%";
+    // Ενημέρωση Progress Bar & Counters
+    const progressPercent = (currentQuestionIndex / quiz.questions.length) * 100;
+    document.getElementById("progress").style.width = progressPercent + "%";
+    document.getElementById("q-counter").innerText = `Ερώτηση ${currentQuestionIndex + 1} από ${quiz.questions.length}`;
 
-// Ερώτηση
-document.getElementById("question-field").innerText = `${currentQuestionIndex + 1}. ${currentQuestion.q}`;
+    // Εμφάνιση Ερώτησης
+    document.getElementById("question-field").innerText = `${currentQuestionIndex + 1}. ${currentQuestion.q}`;
 
-// Επιλογές
-const optionsField = document.getElementById("options-field");
-optionsField.innerHTML = "";
+    // Δημιουργία Επιλογών με Real-time feedback
+    const optionsField = document.getElementById("options-field");
+    optionsField.innerHTML = "";
 
-currentQuestion.a.forEach((option, index) => {
-const btn = document.createElement("button");
-btn.className = "option-btn";
-btn.innerText = option;
-btn.onclick = () => selectOption(btn, index);
-optionsField.appendChild(btn);
-});
+    currentQuestion.a.forEach((option, index) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.innerText = option;
+        btn.onclick = () => evaluateAnswer(btn, index, currentQuestion.correct);
+        optionsField.appendChild(btn);
+    });
 }
 
-function selectOption(buttonElement, index) {
-// Αφαίρεση προηγούμενης επιλογής
-const allOptions = document.querySelectorAll(".option-btn");
-allOptions.forEach(btn => btn.classList.remove("selected"));
+function evaluateAnswer(selectedButton, clickedIndex, correctIndex) {
+    if (hasAnswered) return; // Κλειδώνει τις υπόλοιπες επιλογές
+    hasAnswered = true;
 
-// Επιλογή νέας
-buttonElement.classList.add("selected");
-selectedOptionIndex = index;
+    const allButtons = document.querySelectorAll(".option-btn");
+    
+    // Απενεργοποίηση όλων των κουμπιών
+    allButtons.forEach(btn => btn.disabled = true);
+
+    if (clickedIndex === correctIndex) {
+        selectedButton.classList.add("correct");
+        score++;
+    } else {
+        selectedButton.classList.add("wrong");
+        // Ανάδειξη της σωστής απάντησης αυτόματα
+        allButtons[correctIndex].classList.add("correct");
+    }
+
+    // Ξεκλειδώνει το κουμπί επόμενης ερώτησης
+    document.getElementById("next-btn").disabled = false;
 }
 
-// ================= ΕΠΟΜΕΝΗ ΕΡΩΤΗΣΗ / ΤΕΛΟΣ =================
 function nextQuestion() {
-if(selectedOptionIndex === null) {
-alert("Παρακαλώ επίλεξε μια απάντηση πρώτα!");
-return;
+    const quiz = quizData[currentClass][currentQuizIndex];
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < quiz.questions.length) {
+        loadQuestion();
+    } else {
+        finishQuiz(quiz.questions.length);
+    }
 }
 
-const quiz = quizData[currentClass][currentQuizIndex];
-const currentQuestion = quiz.questions[currentQuestionIndex];
-
-// Έλεγχος σωστής απάντησης
-if(selectedOptionIndex === currentQuestion.correct) {
-score++;
-}
-
-currentQuestionIndex++;
-
-if(currentQuestionIndex < quiz.questions.length) {
-loadQuestion();
-} else {
-// Τέλος Κουίζ
-document.getElementById("play-screen").classList.add("hidden");
-document.getElementById("result-screen").classList.remove("hidden");
-document.getElementById("score-field").innerText = `Σκορ: ${score} / ${quiz.questions.length}`;
-}
+function finishQuiz(totalQuestions) {
+    document.getElementById("play-screen").classList.add("hidden");
+    document.getElementById("result-screen").classList.remove("hidden");
+    
+    const finalScoreField = document.getElementById("score-field");
+    finalScoreField.innerText = `Σκορ: ${score} / ${totalQuestions}`;
+    
+    // Έξυπνα μηνύματα επιβράβευσης
+    const msg = document.getElementById("feedback-message");
+    const percentage = (score / totalQuestions) * 100;
+    if (percentage === 100) {
+        msg.innerText = "🏆 Τέλεια βαθμολογία! Είσαι expert στα Αγγλικά!";
+    } else if (percentage >= 70) {
+        msg.innerText = "🌟 Εξαιρετική προσπάθεια! Συνέχισε έτσι!";
+    } else {
+        msg.innerText = "📚 Καλή προσπάθεια! Κάνε μια επανάληψη και ξαναδοκίμασε!";
+    }
 }
 </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="el">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lexicon Quizzes | Μαθητές</title>
-    <link rel="icon" type="image/png" href="https://i.ibb.co/4ZvfRB5q/Lexicon.png">
-    <style>
-        * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
-        body { background:#f3f8ff; color:#2b2b2b; padding:40px 20px; transition: .3s; }
-        body.dark { background:#10151f; color:white; }
-        
-        .quiz-container { max-width:650px; margin:40px auto; background:white; padding:30px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,.08); }
-        body.dark .quiz-container { background:#1b2434; }
-        
-        h1 { color:#1565c0; text-align:center; margin-bottom:10px; }
-        body.dark h1 { color:#42a5f5; }
-        p.intro { text-align:center; color:#666; margin-bottom:30px; }
-        body.dark p.intro { color:#b0bec5; }
-        
-        .question { margin-bottom:25px; background:rgba(21, 101, 192, 0.05); padding:20px; border-radius:12px; }
-        body.dark .question { background:rgba(255,255,255,0.03); }
-        .question p { font-weight:600; font-size:18px; margin-bottom:12px; }
-        
-        .options { display:flex; flex-direction:column; gap:10px; }
-        .option-btn { padding:12px 20px; border:2px solid #1565c0; background:transparent; color:#1565c0; border-radius:30px; cursor:pointer; font-weight:600; text-align:left; transition:.2s; }
-        body.dark .option-btn { border-color:#42a5f5; color:#42a5f5; }
-        .option-btn:hover { background:#1565c0; color:white; }
-        body.dark .option-btn:hover { background:#42a5f5; color:#10151f; }
-        
-        /* Σωστό - Λάθος Styles */
-        .option-btn.correct { background:#2e7d32 !important; border-color:#2e7d32 !important; color:white !important; }
-        .option-btn.wrong { background:#c62828 !important; border-color:#c62828 !important; color:white !important; }
-        
-        .nav-btn { display:inline-block; margin:20px auto; padding:10px 25px; background:#1565c0; color:white; text-decoration:none; border-radius:30px; font-weight:bold; }
-        .dark-toggle { position:fixed; top:20px; right:20px; padding:8px 15px; background:#1565c0; color:white; border:none; border-radius:20px; cursor:pointer; }
-    </style>
-</head>
-<body>
-
-    <button class="dark-toggle" onclick="document.body.classList.toggle('dark')">🌙 Dark</button>
-    
-    <div style="text-align:center;">
-        <a href="index.html" class="nav-btn">⬅️ Επιστροφή στο Site</a>
-    </div>
-
-    <div class="quiz-container">
-        <h1>🇬🇧 English Quiz 1.0</h1>
-        <p class="intro">Επίλεξε τη σωστή απάντηση για να ελέγξεις τις γνώσεις σου!</p>
-
-        <!-- Ερώτηση 1 -->
-        <div class="question">
-            <p>1. She ________ to school every day.</p>
-            <div class="options">
-                <button class="option-btn" onclick="checkAnswer(this, false)">go</button>
-                <button class="option-btn" onclick="checkAnswer(this, true)">goes</button>
-                <button class="option-btn" onclick="checkAnswer(this, false)">going</button>
-            </div>
-        </div>
-
-        <!-- Ερώτηση 2 -->
-        <div class="question">
-            <p>2. Look! The birds ________ in the sky.</p>
-            <div class="options">
-                <button class="option-btn" onclick="checkAnswer(this, true)">are flying</button>
-                <button class="option-btn" onclick="checkAnswer(this, false)">flies</button>
-                <button class="option-btn" onclick="checkAnswer(this, false)">is flying</button>
-            </div>
-        </div>
-
-        <!-- Ερώτηση 3 -->
-        <div class="question">
-            <p>3. Yesterday, we ________ a wonderful movie.</p>
-            <div class="options">
-                <button class="option-btn" onclick="checkAnswer(this, false)">see</button>
-                <button class="option-btn" onclick="checkAnswer(this, false)">seen</button>
-                <button class="option-btn" onclick="checkAnswer(this, true)">saw</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function checkAnswer(button, isCorrect) {
-            // Βρίσκουμε όλα τα κουμπιά της ίδιας ερώτησης
-            const parent = button.parentElement;
-            const buttons = parent.querySelectorAll('.option-btn');
-            
-            // Απενεργοποιούμε τα κουμπιά για να μην ξαναπατηθούν
-            buttons.forEach(btn => btn.disabled = true);
-            
-            // Χρωματίζουμε το κουμπί ανάλογα με το αν είναι σωστό ή λάθος
-            if (isCorrect) {
-                button.classList.add('correct');
-            } else {
-                button.classList.add('wrong');
-                // Δείχνουμε και ποιο ήταν το σωστό
-                buttons.forEach(btn => {
-                    if(btn.getAttribute('onclick').includes('true')) {
-                        btn.classList.add('correct');
-                    }
-                });
-            }
-        }
-    </script>
 </body>
 </html>
