@@ -410,6 +410,7 @@ font-size:18px;
 <li><a href="#about" onclick="closeMenuOnly()">Σχετικά</a></li>
 <li><a href="#programs" onclick="closeMenuOnly()">Προγράμματα</a></li>
 <li><a href="#gallery" onclick="closeMenuOnly()">Gallery</a></li>
+<li><a href="#faq" onclick="closeMenuOnly()">FAQ</a></li>
 <li><a href="#contact" onclick="closeMenuOnly()">Επικοινωνία</a></li>
 <li class="login"><a href="javascript:void(0)" onclick="checkLogin()">👤 Log in</a></li>
 </ul>
@@ -631,6 +632,65 @@ font-size:18px;
 </div>
 </section>
 
+<section id="faq">
+<h2 class="title">Συχνές Ερωτήσεις</h2>
+<p class="subtitle">Απαντήσεις σε ό,τι ρωτούν συχνότερα οι γονείς και οι μαθητές μας.</p>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFaq(this)">
+<span>Από ποια ηλικία μπορεί να ξεκινήσει ένα παιδί μαθήματα στο Lexicon;</span>
+<span class="faq-icon">+</span>
+</div>
+<div class="faq-answer">
+<p>Δεχόμαστε μαθητές από τις μικρές τάξεις του δημοτικού και προσαρμόζουμε το πρόγραμμα ανάλογα με την ηλικία και το επίπεδο κάθε παιδιού, μέχρι και μαθητές λυκείου.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFaq(this)">
+<span>Ποιες γλώσσες διδάσκετε;</span>
+<span class="faq-icon">+</span>
+</div>
+<div class="faq-answer">
+<p>Διδάσκουμε Αγγλικά και Γαλλικά, σε όλα τα επίπεδα, από αρχάριους έως προχωρημένους.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFaq(this)">
+<span>Προετοιμάζετε μαθητές για αναγνωρισμένες πιστοποιήσεις;</span>
+<span class="faq-icon">+</span>
+</div>
+<div class="faq-answer">
+<p>Ναι, προσφέρουμε συστηματική προετοιμασία για πιστοποιητικά όπως Cambridge, Michigan, ESB και DELF, με στοχευμένη μεθοδολογία για κάθε εξεταστικό φορέα.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFaq(this)">
+<span>Υποστηρίζετε μαθητές με μαθησιακές δυσκολίες;</span>
+<span class="faq-icon">+</span>
+</div>
+<div class="faq-answer">
+<p>Ναι, διαθέτουμε εξειδικευμένη μαθησιακή υποστήριξη και προσαρμόζουμε τη διδασκαλία των ξένων γλωσσών στις ανάγκες κάθε μαθητή.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFaq(this)">
+<span>Κάνετε ατομικά (ιδιαίτερα) μαθήματα;</span>
+<span class="faq-icon">+</span>
+</div>
+<div class="faq-answer">
+<p>Ναι, εκτός από τα τμήματα, προσφέρουμε και ατομικά μαθήματα με πρόγραμμα προσαρμοσμένο στον ρυθμό και τους στόχους του κάθε μαθητή.</p>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFaq(this)">
+<span>Πώς μπορώ να κλείσω ένα ραντεβού γνωριμίας ή να εγγράψω το παιδί μου;</span>
+<span class="faq-icon">+</span>
+</div>
+<div class="faq-answer">
+<p>Μπορείτε να μας καλέσετε στο 210 401 4838 ή να μας στείλετε email στο lexicon100@gmail.com και θα κανονίσουμε μαζί τα επόμενα βήματα.</p>
+</div>
+</div>
+</section>
+
 <section id="contact">
 <h2 class="title">Επικοινωνία</h2>
 <p class="subtitle">Επικοινωνήστε μαζί μας για περισσότερες πληροφορίες.</p>
@@ -775,6 +835,23 @@ if (password === STUDENT_VERIFICATION) {
 window.location.href = "quizzes.html";
 } else if (password !== null) {
 alert("Λάθος κωδικός! Προσπαθήστε ξανά.");
+}
+}
+
+// ================= FAQ ACCORDION =================
+function toggleFaq(el){
+const item = el.parentElement;
+const answer = item.querySelector(".faq-answer");
+const isActive = item.classList.contains("active");
+
+document.querySelectorAll(".faq-item").forEach(i=>{
+i.classList.remove("active");
+i.querySelector(".faq-answer").style.maxHeight = null;
+});
+
+if(!isActive){
+item.classList.add("active");
+answer.style.maxHeight = answer.scrollHeight + "px";
 }
 }
 </script>
