@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lexicon Quizzes | Μαθητές</title>
+    <link rel="icon" type="image/png" href="https://i.ibb.co/4ZvfRB5q/Lexicon.png">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+        body { background:#f3f8ff; color:#2b2b2b; padding:40px 20px; transition: .3s; }
+        body.dark { background:#10151f; color:white; }
+        
+        .quiz-container { max-width:650px; margin:40px auto; background:white; padding:30px; border-radius:20px; box-shadow:0 10px 25px rgba(0,0,0,.08); }
+        body.dark .quiz-container { background:#1b2434; }
+        
+        h1 { color:#1565c0; text-align:center; margin-bottom:10px; }
+        body.dark h1 { color:#42a5f5; }
+        p.intro { text-align:center; color:#666; margin-bottom:30px; }
+        body.dark p.intro { color:#b0bec5; }
+        
+        .question { margin-bottom:25px; background:rgba(21, 101, 192, 0.05); padding:20px; border-radius:12px; }
+        body.dark .question { background:rgba(255,255,255,0.03); }
+        .question p { font-weight:600; font-size:18px; margin-bottom:12px; }
+        
+        .options { display:flex; flex-direction:column; gap:10px; }
+        .option-btn { padding:12px 20px; border:2px solid #1565c0; background:transparent; color:#1565c0; border-radius:30px; cursor:pointer; font-weight:600; text-align:left; transition:.2s; }
+        body.dark .option-btn { border-color:#42a5f5; color:#42a5f5; }
+        .option-btn:hover { background:#1565c0; color:white; }
+        body.dark .option-btn:hover { background:#42a5f5; color:#10151f; }
+        
+        /* Σωστό - Λάθος Styles */
+        .option-btn.correct { background:#2e7d32 !important; border-color:#2e7d32 !important; color:white !important; }
+        .option-btn.wrong { background:#c62828 !important; border-color:#c62828 !important; color:white !important; }
+        
+        .nav-btn { display:inline-block; margin:20px auto; padding:10px 25px; background:#1565c0; color:white; text-decoration:none; border-radius:30px; font-weight:bold; }
+        .dark-toggle { position:fixed; top:20px; right:20px; padding:8px 15px; background:#1565c0; color:white; border:none; border-radius:20px; cursor:pointer; }
+    </style>
+</head>
+<body>
+
+    <button class="dark-toggle" onclick="document.body.classList.toggle('dark')">🌙 Dark</button>
+    
+    <div style="text-align:center;">
+        <a href="index.html" class="nav-btn">⬅️ Επιστροφή στο Site</a>
+    </div>
+
+    <div class="quiz-container">
+        <h1>🇬🇧 English Quiz 1.0</h1>
+        <p class="intro">Επίλεξε τη σωστή απάντηση για να ελέγξεις τις γνώσεις σου!</p>
+
+        <!-- Ερώτηση 1 -->
+        <div class="question">
+            <p>1. She ________ to school every day.</p>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, false)">go</button>
+                <button class="option-btn" onclick="checkAnswer(this, true)">goes</button>
+                <button class="option-btn" onclick="checkAnswer(this, false)">going</button>
+            </div>
+        </div>
+
+        <!-- Ερώτηση 2 -->
+        <div class="question">
+            <p>2. Look! The birds ________ in the sky.</p>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, true)">are flying</button>
+                <button class="option-btn" onclick="checkAnswer(this, false)">flies</button>
+                <button class="option-btn" onclick="checkAnswer(this, false)">is flying</button>
+            </div>
+        </div>
+
+        <!-- Ερώτηση 3 -->
+        <div class="question">
+            <p>3. Yesterday, we ________ a wonderful movie.</p>
+            <div class="options">
+                <button class="option-btn" onclick="checkAnswer(this, false)">see</button>
+                <button class="option-btn" onclick="checkAnswer(this, false)">seen</button>
+                <button class="option-btn" onclick="checkAnswer(this, true)">saw</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer(button, isCorrect) {
+            // Βρίσκουμε όλα τα κουμπιά της ίδιας ερώτησης
+            const parent = button.parentElement;
+            const buttons = parent.querySelectorAll('.option-btn');
+            
+            // Απενεργοποιούμε τα κουμπιά για να μην ξαναπατηθούν
+            buttons.forEach(btn => btn.disabled = true);
+            
+            // Χρωματίζουμε το κουμπί ανάλογα με το αν είναι σωστό ή λάθος
+            if (isCorrect) {
+                button.classList.add('correct');
+            } else {
+                button.classList.add('wrong');
+                // Δείχνουμε και ποιο ήταν το σωστό
+                buttons.forEach(btn => {
+                    if(btn.getAttribute('onclick').includes('true')) {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
