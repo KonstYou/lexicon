@@ -1,4 +1,3 @@
-<!-- STUDENT ID VALIDATION: GR283 -->
 <!DOCTYPE html>
 <html lang="el">
 <head>
@@ -18,7 +17,42 @@
 <link rel="icon" type="image/png" href="https://i.ibb.co/4ZvfRB5q/Lexicon.png">
 <link rel="apple-touch-icon" href="https://i.ibb.co/4ZvfRB5q/Lexicon.png">
 <style>
-*{
+
+  
+  /* FAQ ACCORDION STYLES */
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 10px 0;
+    user-select: none;
+}
+.faq-icon {
+    font-size: 22px;
+    color: #1565c0;
+    transition: transform 0.3s ease;
+}
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+    padding-top: 0;
+    line-height: 1.7;
+    color: #555;
+}
+body.dark .faq-answer {
+    color: #ccc;
+}
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    padding-top: 15px;
+}
+  
+  
+  *{
 margin:0;
 padding:0;
 box-sizing:border-box;
@@ -446,7 +480,7 @@ font-size:18px;
 </section>
 
 <section>
-<h2 class="title">Γιατί να επιλέξετε το Lexicon;</h2>
+<h2 class="title">Γιατί να επιλέξετε το Lexicon...</h2>
 <p class="subtitle">Με περισσότερα από 25 χρόνια εμπειρίας προσφέρουμε ποιοτική εκπαίδευση και προσωπική υποστήριξη.</p>
 <div class="features">
 <div class="feature">
@@ -487,8 +521,8 @@ font-size:18px;
 <h2 style="text-align:center;font-size:42px;margin-bottom:50px;color:white;">Το Lexicon με αριθμούς</h2>
 <div class="stats-grid">
 <div>
-<h3 class="counter" data-target="26">0</h3>
-<p>Χρόνια εμπειρίας</p>
+<h3 class="counter" data-target="100" data-type="percent">0</h3>
+<p>Επιτυχία στις πιστοποιήσεις</p>
 </div>
 <div>
 <h3 class="counter" data-target="700">0</h3>
@@ -633,62 +667,68 @@ font-size:18px;
 </section>
 
 <section id="faq">
-<h2 class="title">Συχνές Ερωτήσεις</h2>
-<p class="subtitle">Απαντήσεις σε ό,τι ρωτούν συχνότερα οι γονείς και οι μαθητές μας.</p>
-<div class="faq-item">
-<div class="faq-question" onclick="toggleFaq(this)">
-<span>Από ποια ηλικία μπορεί να ξεκινήσει ένα παιδί μαθήματα στο Lexicon;</span>
-<span class="faq-icon">+</span>
-</div>
-<div class="faq-answer">
-<p>Δεχόμαστε μαθητές από τις μικρές τάξεις του δημοτικού και προσαρμόζουμε το πρόγραμμα ανάλογα με την ηλικία και το επίπεδο κάθε παιδιού, μέχρι και μαθητές λυκείου.</p>
-</div>
-</div>
-<div class="faq-item">
-<div class="faq-question" onclick="toggleFaq(this)">
-<span>Ποιες γλώσσες διδάσκετε;</span>
-<span class="faq-icon">+</span>
-</div>
-<div class="faq-answer">
-<p>Διδάσκουμε Αγγλικά και Γαλλικά, σε όλα τα επίπεδα, από αρχάριους έως προχωρημένους.</p>
-</div>
-</div>
-<div class="faq-item">
-<div class="faq-question" onclick="toggleFaq(this)">
-<span>Προετοιμάζετε μαθητές για αναγνωρισμένες πιστοποιήσεις;</span>
-<span class="faq-icon">+</span>
-</div>
-<div class="faq-answer">
-<p>Ναι, προσφέρουμε συστηματική προετοιμασία για πιστοποιητικά όπως Cambridge, Michigan, ESB και DELF, με στοχευμένη μεθοδολογία για κάθε εξεταστικό φορέα.</p>
-</div>
-</div>
-<div class="faq-item">
-<div class="faq-question" onclick="toggleFaq(this)">
-<span>Υποστηρίζετε μαθητές με μαθησιακές δυσκολίες;</span>
-<span class="faq-icon">+</span>
-</div>
-<div class="faq-answer">
-<p>Ναι, διαθέτουμε εξειδικευμένη μαθησιακή υποστήριξη και προσαρμόζουμε τη διδασκαλία των ξένων γλωσσών στις ανάγκες κάθε μαθητή.</p>
-</div>
-</div>
-<div class="faq-item">
-<div class="faq-question" onclick="toggleFaq(this)">
-<span>Κάνετε ατομικά (ιδιαίτερα) μαθήματα;</span>
-<span class="faq-icon">+</span>
-</div>
-<div class="faq-answer">
-<p>Ναι, εκτός από τα τμήματα, προσφέρουμε και ατομικά μαθήματα με πρόγραμμα προσαρμοσμένο στον ρυθμό και τους στόχους του κάθε μαθητή.</p>
-</div>
-</div>
-<div class="faq-item">
-<div class="faq-question" onclick="toggleFaq(this)">
-<span>Πώς μπορώ να κλείσω ένα ραντεβού γνωριμίας ή να εγγράψω το παιδί μου;</span>
-<span class="faq-icon">+</span>
-</div>
-<div class="faq-answer">
-<p>Μπορείτε να μας καλέσετε στο 210 401 4838 ή να μας στείλετε email στο lexicon100@gmail.com και θα κανονίσουμε μαζί τα επόμενα βήματα.</p>
-</div>
-</div>
+  <h2 class="title">Συχνές Ερωτήσεις</h2>
+  <p class="subtitle">Απαντήσεις σε ό,τι ρωτούν συχνότερα οι γονείς και οι μαθητές μας.</p>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>Από ποια ηλικία μπορεί να ξεκινήσει ένα παιδί μαθήματα στο Lexicon?</span>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      <p>Δεχόμαστε μαθητές από τις μικρές τάξεις του δημοτικού και προσαρμόζουμε το πρόγραμμα ανάλογα με την ηλικία και το επίπεδο κάθε παιδιού, μέχρι και μαθητές λυκείου.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>Ποιες γλώσσες διδάσκετε;</span>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      <p>Διδάσκουμε Αγγλικά και Γαλλικά, σε όλα τα επίπεδα, από αρχάριους έως προχωρημένους.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>Προετοιμάζετε μαθητές για αναγνωρισμένες πιστοποιήσεις;</span>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      <p>Ναι, προσφέρουμε συστηματική προετοιμασία για πιστοποιητικά όπως Cambridge, Michigan, ESB και DELF, με στοχευμένη μεθοδολογία για κάθε εξεταστικό φορέα.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>Υποστηρίζετε μαθητές με μαθησιακές δυσκολίες;</span>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      <p>Ναι, διαθέτουμε εξειδικευμένη μαθησιακή υποστήριξη και προσαρμόζουμε τη διδασκαλία των ξένων γλωσσών στις ανάγκες κάθε μαθητή.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>Κάνετε ατομικά (ιδιαίτερα) μαθήματα;</span>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      <p>Ναι, εκτός από τα τμήματα, προσφέρουμε και ατομικά μαθήματα με πρόγραμμα προσαρμοσμένο στον ρυθμό και τους στόχους του κάθε μαθητή.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>Πώς μπορώ να κλείσω ένα ραντεβού γνωριμίας ή να εγγράψω το παιδί μου;</span>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      <p>Μπορείτε να μας καλέσετε στο 210 401 4838 ή να μας στείλετε email στο lexicon100@gmail.com και θα κανονίσουμε μαζί τα επόμενα βήματα.</p>
+    </div>
+  </div>
 </section>
 
 <section id="contact">
@@ -791,34 +831,45 @@ document.querySelector(targetId).scrollIntoView({ behavior:"smooth" });
 // ================= COUNTER ANIMATION =================
 const counters = document.querySelectorAll(".counter");
 const startCounters = () => {
-counters.forEach(counter => {
-counter.innerText = "0";
-const target = +counter.getAttribute("data-target");
-const updateCounter = () => {
-const current = +counter.innerText;
-const increment = target / 100;
-if(current < target){
-counter.innerText = Math.ceil(current + increment);
-setTimeout(updateCounter, 20);
-} else {
-counter.innerText = target + "+";
-}
-};
-updateCounter();
-});
+    counters.forEach(counter => {
+        counter.innerText = "0";
+        const target = +counter.getAttribute("data-target");
+        
+        const updateCounter = () => {
+            // Παίρνουμε μόνο τα ψηφία, αφαιρώντας % ή + αν υπάρχουν
+            const current = +counter.innerText.replace(/[^0-9]/g, ''); 
+            const increment = target / 100;
+            
+            if(current < target){
+                const nextValue = Math.ceil(current + increment);
+                // Αν είναι το ποσοστό, δείχνει το % καθώς ανεβαίνει
+                counter.innerText = counter.getAttribute("data-type") === "percent" ? nextValue + "%" : nextValue;
+                setTimeout(updateCounter, 20);
+            } else {
+                // Όταν τερματίσει η αρίθμηση
+                if(counter.getAttribute("data-type") === "percent") {
+                    counter.innerText = target + "%";
+                } else {
+                    counter.innerText = target + "+";
+                }
+            }
+        };
+        
+        updateCounter();
+    });
 };
 
 const counterSection = document.querySelector(".stats");
 const counterObserver = new IntersectionObserver((entries)=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-startCounters();
-counterObserver.disconnect();
-}
-});
-});
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            startCounters();
+            counterObserver.disconnect();
+        }
+    });
+}, { threshold: 0.2 }); // Ξεκινάει όταν φαίνεται το 20% της ενότητας
 counterObserver.observe(counterSection);
-
+  
 // ================= BURGER MENU FUNCTIONS =================
 function toggleMenu(){
 document.getElementById("menu").classList.toggle("active");
