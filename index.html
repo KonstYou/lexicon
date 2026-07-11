@@ -889,21 +889,28 @@ alert("Λάθος κωδικός! Προσπαθήστε ξανά.");
 }
 }
 
-// ================= FAQ ACCORDION =================
-function toggleFaq(el){
-const item = el.parentElement;
-const answer = item.querySelector(".faq-answer");
-const isActive = item.classList.contains("active");
 
-document.querySelectorAll(".faq-item").forEach(i=>{
-i.classList.remove("active");
-i.querySelector(".faq-answer").style.maxHeight = null;
-});
+  // ================= FAQ ACCORDION =================
+function toggleFaq(element) {
+    const faqItem = element.parentElement;
+    const icon = element.querySelector('.faq-icon');
+    
+    // Κλείνει αυτόματα τα υπόλοιπα FAQ όταν ανοίγει ένα καινούργιο
+    document.querySelectorAll('.faq-item').forEach(item => {
+        if (item !== faqItem && item.classList.contains('active')) {
+            item.classList.remove('active');
+            item.querySelector('.faq-icon').innerText = '+';
+        }
+    });
 
-if(!isActive){
-item.classList.add("active");
-answer.style.maxHeight = answer.scrollHeight + "px";
-}
+    // Ανοιγοκλείνει το επιλεγμένο FAQ
+    faqItem.classList.toggle('active');
+    
+    if (faqItem.classList.contains('active')) {
+        icon.innerText = '−';
+    } else {
+        icon.innerText = '+';
+    }
 }
 </script>
 </body>
