@@ -4,35 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lexicon | Ultimate Quiz & Test Platform</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Lexicon | Ultimate Grammar Quiz & Test Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root {
-            --primary: #1565c0;
-            --primary-light: #42a5f5;
-            --primary-dark: #0d47a1;
-            --secondary: #ff9800;
-            --bg-light: #f0f4f9;
-            --card-light: #ffffff;
-            --text-light: #2c3e50;
-            --border-light: #dbe5f1;
-            --card-hover-light: #e8f1fd;
+            --primary: #2563eb;
+            --primary-light: #60a5fa;
+            --primary-dark: #1d4ed8;
+            --accent: #f59e0b;
+            --accent-glow: rgba(245, 158, 11, 0.4);
             
-            --bg-dark: #0f172a;
-            --card-dark: #1e293b;
+            --bg-gradient-light: linear-gradient(135deg, #f0f7ff 0%, #e0eefc 50%, #f5f3ff 100%);
+            --card-light: rgba(255, 255, 255, 0.88);
+            --card-border-light: rgba(255, 255, 255, 0.9);
+            --text-light: #0f172a;
+            --subtext-light: #475569;
+            --input-bg-light: #ffffff;
+            
+            --bg-gradient-dark: linear-gradient(135deg, #090d16 0%, #0f172a 50%, #171026 100%);
+            --card-dark: rgba(30, 41, 59, 0.85);
+            --card-border-dark: rgba(255, 255, 255, 0.08);
             --text-dark: #f8fafc;
-            --border-dark: #334155;
-            --card-hover-dark: #334155;
+            --subtext-dark: #94a3b8;
+            --input-bg-dark: #1e293b;
+
+            --success: #10b981;
+            --success-bg: rgba(16, 185, 129, 0.15);
+            --error: #ef4444;
+            --error-bg: rgba(239, 68, 68, 0.15);
             
-            --success: #2e7d32;
-            --success-bg: rgba(46, 125, 50, 0.12);
-            --error: #c62828;
-            --error-bg: rgba(198, 40, 40, 0.12);
-            
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            --radius-lg: 24px;
-            --radius-md: 16px;
+            --glass-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.07);
+            --radius-xl: 28px;
+            --radius-lg: 20px;
+            --radius-md: 14px;
             --radius-sm: 10px;
         }
 
@@ -40,64 +45,72 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
             user-select: none;
         }
 
         body {
-            background: var(--bg-light);
+            background: var(--bg-gradient-light);
             color: var(--text-light);
             min-height: 100vh;
-            padding: 30px 15px;
-            transition: background 0.3s ease, color 0.3s ease;
+            padding: 24px 16px;
+            transition: background 0.4s ease, color 0.4s ease;
+            background-attachment: fixed;
         }
 
         body.dark {
-            background: var(--bg-dark);
+            background: var(--bg-gradient-dark);
             color: var(--text-dark);
         }
 
         .container {
             width: 100%;
-            max-width: 850px;
+            max-width: 860px;
             margin: 0 auto;
         }
 
-        /* HEADER STYLES */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 24px;
             background: var(--card-light);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             padding: 16px 24px;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow);
-            transition: background 0.3s ease;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--card-border-light);
+            box-shadow: var(--glass-shadow);
         }
 
         body.dark header {
             background: var(--card-dark);
+            border-color: var(--card-border-dark);
         }
 
         .logo-title {
             color: var(--primary);
             font-weight: 800;
-            font-size: 22px;
+            font-size: 20px;
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 12px;
+            letter-spacing: -0.5px;
         }
 
         body.dark .logo-title {
             color: var(--primary-light);
         }
 
-        .logo-img {
-            height: 36px;
-            width: auto;
+        .logo-badge {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 8px;
             border-radius: 6px;
+            letter-spacing: 0.5px;
         }
 
         .header-actions {
@@ -107,51 +120,54 @@
         }
 
         .icon-btn {
-            background: rgba(21, 101, 192, 0.08);
+            background: rgba(37, 99, 235, 0.08);
             border: none;
             color: var(--primary);
-            width: 42px;
-            height: 42px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             font-size: 18px;
-            transition: all 0.2s ease;
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         body.dark .icon-btn {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
             color: #fff;
         }
 
         .icon-btn:hover {
-            transform: scale(1.08);
+            transform: scale(1.1);
         }
 
-        /* CARD CONTAINERS */
         .card {
             background: var(--card-light);
-            padding: 35px;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow);
-            margin-bottom: 20px;
-            transition: background 0.3s ease, border 0.3s ease;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 36px;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--card-border-light);
+            box-shadow: var(--glass-shadow);
+            margin-bottom: 24px;
+            transition: transform 0.3s ease, background 0.3s ease, border 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
         body.dark .card {
             background: var(--card-dark);
+            border-color: var(--card-border-dark);
         }
 
         .section-title {
-            margin: 25px 0 15px 0;
-            font-size: 16px;
-            font-weight: 700;
+            margin: 28px 0 16px 0;
+            font-size: 14px;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1.2px;
+            letter-spacing: 1.5px;
             color: var(--primary);
             display: flex;
             align-items: center;
@@ -164,92 +180,92 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
             gap: 16px;
         }
 
-        /* CLASS & QUIZ SELECTION BOXES */
         .class-box, .quiz-box {
-            background: #f8fafc;
-            border: 2px solid var(--border-light);
-            padding: 22px;
-            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.6);
+            border: 2px solid rgba(226, 232, 240, 0.8);
+            padding: 24px;
+            border-radius: var(--radius-lg);
             text-align: center;
             cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            font-weight: 600;
-            font-size: 17px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            font-weight: 700;
+            font-size: 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         body.dark .class-box, body.dark .quiz-box {
-            background: #1e293b;
-            border-color: var(--border-dark);
+            background: rgba(15, 23, 42, 0.6);
+            border-color: var(--card-border-dark);
         }
 
         .class-box:hover, .quiz-box:hover {
-            transform: translateY(-4px);
+            transform: translateY(-5px);
             border-color: var(--primary);
-            background: var(--card-hover-light);
-            box-shadow: 0 8px 20px rgba(21, 101, 192, 0.15);
+            background: #ffffff;
+            box-shadow: 0 12px 28px -10px rgba(37, 99, 235, 0.25);
         }
 
         body.dark .class-box:hover, body.dark .quiz-box:hover {
-            background: var(--card-hover-dark);
+            background: #1e293b;
             border-color: var(--primary-light);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.5);
         }
 
-        .test-panel {
-            border: 2px dashed var(--secondary);
-            background: #fffdf5;
-        }
-        body.dark .test-panel {
-            background: #25231c;
+        .featured-box {
+            border: 2px solid var(--accent);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(255, 255, 255, 0.8));
         }
 
-        /* BUTTONS */
+        body.dark .featured-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(30, 41, 59, 0.8));
+        }
+
         .btn {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             border: none;
-            padding: 12px 28px;
+            padding: 14px 30px;
             border-radius: 30px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 15px;
-            transition: all 0.2s ease;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            box-shadow: 0 4px 12px rgba(21, 101, 192, 0.25);
+            gap: 10px;
+            box-shadow: 0 6px 20px -4px rgba(37, 99, 235, 0.4);
         }
 
         .btn:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(21, 101, 192, 0.35);
-            background: var(--primary-dark);
+            box-shadow: 0 10px 25px -4px rgba(37, 99, 235, 0.5);
+            filter: brightness(1.08);
         }
 
         .btn:disabled {
             opacity: 0.4;
             cursor: not-allowed;
             box-shadow: none;
+            transform: none;
         }
 
         .btn-secondary {
-            background: #e2e8f0;
+            background: rgba(226, 232, 240, 0.8);
             color: #334155;
             box-shadow: none;
         }
 
         body.dark .btn-secondary {
-            background: #334155;
+            background: rgba(51, 65, 85, 0.8);
             color: #f8fafc;
         }
 
@@ -260,14 +276,19 @@
             background: #475569;
         }
 
-        /* PRE-QUIZ SETUP MODAL & OPTIONS */
+        .btn-accent {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            box-shadow: 0 6px 20px -4px rgba(245, 158, 11, 0.4);
+        }
+
         .setup-group {
-            margin-bottom: 22px;
+            margin-bottom: 24px;
         }
 
         .setup-label {
-            font-weight: 600;
-            margin-bottom: 10px;
+            font-weight: 700;
+            margin-bottom: 12px;
             display: block;
             font-size: 15px;
         }
@@ -275,30 +296,31 @@
         .chip-options {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
         }
 
         .chip {
-            padding: 10px 18px;
-            border-radius: 20px;
-            border: 2px solid var(--border-light);
-            background: #f8fafc;
+            padding: 12px 20px;
+            border-radius: 14px;
+            border: 2px solid rgba(226, 232, 240, 0.8);
+            background: rgba(255, 255, 255, 0.6);
             cursor: pointer;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 700;
             transition: all 0.2s ease;
         }
 
         body.dark .chip {
-            background: #0f172a;
-            border-color: var(--border-dark);
+            background: rgba(15, 23, 42, 0.6);
+            border-color: var(--card-border-dark);
+            color: var(--subtext-dark);
         }
 
         .chip.selected {
             background: var(--primary);
             color: white;
             border-color: var(--primary);
-            box-shadow: 0 4px 10px rgba(21, 101, 192, 0.3);
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
         }
 
         body.dark .chip.selected {
@@ -307,95 +329,91 @@
             border-color: var(--primary-light);
         }
 
-        /* HUD & LIVE STATS */
         .hud {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--border-light);
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid rgba(226, 232, 240, 0.6);
         }
 
         body.dark .hud {
-            border-bottom-color: var(--border-dark);
+            border-bottom-color: var(--card-border-dark);
         }
 
         .streak-badge {
-            background: linear-gradient(135deg, #ff9800, #ff5722);
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
             color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-weight: 800;
             font-size: 14px;
             display: flex;
             align-items: center;
             gap: 6px;
-            box-shadow: 0 4px 10px rgba(255, 87, 34, 0.3);
-            animation: pulse 1.5s infinite alternate;
+            box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.05); }
+        .streak-badge.bounce {
+            transform: scale(1.2);
         }
 
         .timer-badge {
-            font-weight: 700;
-            font-size: 16px;
+            font-weight: 800;
+            font-size: 15px;
             display: flex;
             align-items: center;
             gap: 6px;
             color: var(--primary);
-            background: rgba(21, 101, 192, 0.1);
-            padding: 6px 14px;
-            border-radius: 20px;
+            background: rgba(37, 99, 235, 0.1);
+            padding: 8px 16px;
+            border-radius: 30px;
         }
 
         body.dark .timer-badge {
             color: var(--primary-light);
-            background: rgba(66, 165, 245, 0.15);
+            background: rgba(96, 165, 250, 0.15);
         }
 
         .timer-badge.warning {
-            color: #d32f2f;
-            background: rgba(211, 47, 47, 0.15);
-            animation: shake 0.3s ease infinite;
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.15);
+            animation: pulse-warn 0.5s infinite alternate;
         }
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-2px); }
-            75% { transform: translateX(2px); }
+        @keyframes pulse-warn {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.06); }
         }
 
         .progress-bar-container {
             width: 100%;
             height: 10px;
-            background: #e2e8f0;
-            border-radius: 10px;
-            margin-bottom: 25px;
+            background: rgba(226, 232, 240, 0.8);
+            border-radius: 20px;
+            margin-bottom: 28px;
             overflow: hidden;
         }
 
         body.dark .progress-bar-container {
-            background: var(--border-dark);
+            background: rgba(51, 65, 85, 0.6);
         }
 
         .progress-bar {
             height: 100%;
             width: 0%;
             background: linear-gradient(90deg, var(--primary-light), var(--primary));
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 10px;
+            transition: width 0.4s ease;
+            border-radius: 20px;
         }
 
-        /* QUESTION FIELD */
         .question-text {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 22px;
-            line-height: 1.6;
+            font-size: 21px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.5;
             color: var(--text-light);
         }
 
@@ -406,39 +424,40 @@
         .options-list {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
 
         .option-btn {
             width: 100%;
             text-align: left;
-            padding: 16px 22px;
-            background: #f8fafc;
-            border: 2px solid var(--border-light);
-            border-radius: var(--radius-md);
+            padding: 18px 24px;
+            background: rgba(255, 255, 255, 0.7);
+            border: 2px solid rgba(226, 232, 240, 0.9);
+            border-radius: var(--radius-lg);
             cursor: pointer;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 700;
             color: inherit;
-            transition: all 0.2s ease;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         body.dark .option-btn {
-            background: #0f172a;
-            border-color: var(--border-dark);
+            background: rgba(15, 23, 42, 0.6);
+            border-color: var(--card-border-dark);
         }
 
         .option-btn:hover:not(:disabled) {
-            background: var(--card-hover-light);
+            background: #ffffff;
             border-color: var(--primary);
-            transform: translateX(4px);
+            transform: translateX(6px);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.12);
         }
 
         body.dark .option-btn:hover:not(:disabled) {
-            background: var(--card-hover-dark);
+            background: #1e293b;
             border-color: var(--primary-light);
         }
 
@@ -454,34 +473,33 @@
             color: white !important;
         }
 
-        /* WRITING & INPUT TYPE */
         .writing-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 16px;
         }
 
         .text-input {
             width: 100%;
-            padding: 16px 20px;
+            padding: 18px 22px;
             font-size: 17px;
-            font-weight: 600;
-            border: 2px solid var(--border-light);
-            border-radius: var(--radius-md);
-            background: #f8fafc;
+            font-weight: 700;
+            border: 2px solid rgba(226, 232, 240, 0.9);
+            border-radius: var(--radius-lg);
+            background: var(--input-bg-light);
             color: inherit;
             outline: none;
             transition: all 0.2s ease;
         }
 
         body.dark .text-input {
-            background: #0f172a;
-            border-color: var(--border-dark);
+            background: var(--input-bg-dark);
+            border-color: var(--card-border-dark);
         }
 
         .text-input:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(21, 101, 192, 0.15);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
         }
 
         .text-input.correct {
@@ -494,66 +512,126 @@
             background: var(--error-bg) !important;
         }
 
-        .feedback-msg {
-            font-size: 16px;
-            font-weight: 700;
-            margin-top: 8px;
-            padding: 12px;
-            border-radius: var(--radius-sm);
+        .explanation-box {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: var(--radius-md);
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.5;
+            animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* RESULTS SCREEN */
-        .result-summary {
-            text-align: center;
-            padding: 20px 0;
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .score-circle {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: white;
+        .explanation-box.correct {
+            background: var(--success-bg);
+            border: 1px solid var(--success);
+            color: var(--success);
+        }
+
+        .explanation-box.wrong {
+            background: var(--error-bg);
+            border: 1px solid var(--error);
+            color: var(--error);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin: 20px auto;
-            box-shadow: 0 10px 25px rgba(21, 101, 192, 0.3);
+            padding: 20px;
+            animation: fadeIn 0.2s ease;
         }
 
-        .score-circle .number {
-            font-size: 38px;
+        .modal-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 680px;
+            max-height: 85vh;
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        body.dark .modal-card {
+            background: #1e293b;
+            color: #f8fafc;
+        }
+
+        .modal-card h3 {
+            color: var(--primary);
+            font-size: 22px;
             font-weight: 800;
-            line-height: 1;
+            margin-bottom: 16px;
         }
 
-        .score-circle .label {
-            font-size: 12px;
-            opacity: 0.85;
-            text-transform: uppercase;
+        body.dark .modal-card h3 {
+            color: var(--primary-light);
+        }
+
+        .modal-card p, .modal-card ul {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .modal-card ul {
+            padding-left: 20px;
+        }
+
+        .result-summary {
+            text-align: center;
+        }
+
+        .grade-badge {
+            display: inline-block;
+            font-size: 48px;
+            font-weight: 900;
+            padding: 10px 24px;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+            margin-bottom: 16px;
         }
 
         .review-list {
-            margin-top: 30px;
+            margin-top: 28px;
             text-align: left;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            max-height: 350px;
+            gap: 14px;
+            max-height: 380px;
             overflow-y: auto;
-            padding-right: 5px;
+            padding-right: 6px;
         }
 
         .review-item {
-            padding: 15px;
+            padding: 18px;
             border-radius: var(--radius-md);
-            background: #f8fafc;
+            background: rgba(255, 255, 255, 0.6);
             border-left: 5px solid var(--primary);
+            border-top: 1px solid rgba(226, 232, 240, 0.6);
+            border-right: 1px solid rgba(226, 232, 240, 0.6);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
         }
 
         body.dark .review-item {
-            background: #0f172a;
+            background: rgba(15, 23, 42, 0.6);
+            border-color: var(--card-border-dark);
         }
 
         .review-item.is-correct {
@@ -571,9 +649,13 @@
         .footer-credit {
             text-align: center;
             font-size: 13px;
-            color: #888;
-            margin-top: 30px;
-            font-weight: 500;
+            color: var(--subtext-light);
+            margin-top: 32px;
+            font-weight: 600;
+        }
+
+        body.dark .footer-credit {
+            color: var(--subtext-dark);
         }
 
         /* CUSTOM SCROLLBAR */
@@ -591,77 +673,79 @@
 <div class="container">
     <header>
         <a href="#" class="logo-title" onclick="showClasses(); return false;">
-            <img src="https://i.ibb.co/4ZvfRB5q/Lexicon.png" alt="Lexicon Logo" class="logo-img" onerror="this.style.display='none'"> 
-            LEXICON QUIZ PANEL
+            LEXICON <span class="logo-badge">GR283</span>
         </a>
         <div class="header-actions">
+            <button class="icon-btn" onclick="openCheatsheet()" title="Γραμματικοί Κανόνες / Cheat Sheet">💡</button>
             <button class="icon-btn" onclick="toggleAudio()" id="sound-btn" title="Ήχος On/Off">🔊</button>
             <button class="icon-btn" onclick="toggleDark()" id="theme-btn" title="Dark Mode">🌙</button>
         </div>
     </header>
 
     <div id="class-screen" class="card">
-        <h2 style="color: var(--primary); font-weight: 800; font-size: 26px; margin-bottom: 8px;">Καλώς ήρθατε στο Lexicon Quiz! 🎓</h2>
-        <p style="opacity: 0.8; margin-bottom: 25px;">Επιλέξτε τάξη ή διαγώνισμα για να ξεκινήσετε την εξάσκηση.</p>
+        <h2 style="font-weight: 800; font-size: 28px; margin-bottom: 8px;">Καλώς ήρθατε στο Lexicon Quiz! 🎓</h2>
+        <p style="color: var(--subtext-light); margin-bottom: 28px; font-weight: 500;">Επιλέξτε την τάξη ή την ενότητα γραμματικής για εξάσκηση.</p>
+
+        <div class="section-title">⭐ Featured Grammar Units</div>
+        <div class="grid">
+            <div class="class-box featured-box" onclick="selectGrammarUnit('Present Simple & Present Continuous')">
+                <span style="font-size:36px;">⚡</span>
+                <span>Present Simple vs Continuous</span>
+                <span style="font-size:12px; color: var(--accent); font-weight:800;">15 Real Questions</span>
+            </div>
+        </div>
 
         <div class="section-title">🇬🇧 Αγγλικά ανά Τάξη</div>
         <div class="grid">
             <div class="class-box" onclick="selectClass('A Class')">
-                <span style="font-size:30px;">📘</span>
+                <span style="font-size:32px;">📘</span>
                 <span>A Class</span>
             </div>
             <div class="class-box" onclick="selectClass('B Class')">
-                <span style="font-size:30px;">📙</span>
+                <span style="font-size:32px;">📙</span>
                 <span>B Class</span>
             </div>
             <div class="class-box" onclick="selectClass('C Class')">
-                <span style="font-size:30px;">📗</span>
+                <span style="font-size:32px;">📗</span>
                 <span>C Class</span>
             </div>
             <div class="class-box" onclick="selectClass('D Class')">
-                <span style="font-size:30px;">📕</span>
+                <span style="font-size:32px;">📕</span>
                 <span>D Class</span>
-            </div>
-        </div>
-
-        <div class="section-title" style="color: #e65100;">🏆 Γενικά Διαγωνίσματα & Mixed Skills</div>
-        <div class="grid">
-            <div class="class-box test-panel" onclick="selectClass('Mixed Tests')">
-                <span style="font-size:30px;">📝</span>
-                <span>Διαθέσιμα Tests & Exams</span>
             </div>
         </div>
     </div>
 
     <div id="quiz-screen" class="card hidden">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-            <h2 id="selected-class-title" style="font-weight: 700;">Διαθέσιμα Κουίζ</h2>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+            <h2 id="selected-class-title" style="font-weight: 800;">Διαθέσιμα Κουίζ</h2>
             <button class="btn btn-secondary" onclick="showClasses()">⬅️ Πίσω</button>
         </div>
         <div class="grid" id="quizzes-list"></div>
     </div>
 
     <div id="setup-screen" class="card hidden">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-            <h2 id="setup-quiz-title" style="color:var(--primary);">Ρυθμίσεις Test</h2>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+            <h2 id="setup-quiz-title" style="color:var(--primary); font-weight:800;">Ρυθμίσεις Test</h2>
             <button class="btn btn-secondary" onclick="showQuizList()">⬅️ Πίσω</button>
+        </div>
+
+        <div class="setup-group">
+            <span class="setup-label">📊 Αριθμός Ερωτήσεων:</span>
+            <div class="chip-options" id="count-chips">
+                <div class="chip" onclick="setChip(this, 'count', 5)">5 Ερωτήσεις</div>
+                <div class="chip" onclick="setChip(this, 'count', 10)">10 Ερωτήσεις</div>
+                <div class="chip selected" onclick="setChip(this, 'count', 15)">Όλες οι 15 Ερωτήσεις</div>
+            </div>
         </div>
 
         <div class="setup-group">
             <span class="setup-label">⏱️ Χρονικό Όριο ανά Ερώτηση:</span>
             <div class="chip-options" id="timer-chips">
                 <div class="chip" onclick="setChip(this, 'timer', 0)">Χωρίς Χρονόμετρο (Practice)</div>
+                <div class="chip" onclick="setChip(this, 'timer', 10)">10 Δευτερόλεπτα</div>
                 <div class="chip selected" onclick="setChip(this, 'timer', 15)">15 Δευτερόλεπτα</div>
                 <div class="chip" onclick="setChip(this, 'timer', 30)">30 Δευτερόλεπτα</div>
-            </div>
-        </div>
-
-        <div class="setup-group">
-            <span class="setup-label">📊 Πλήθος Ερωτήσεων:</span>
-            <div class="chip-options" id="count-chips">
-                <div class="chip selected" onclick="setChip(this, 'count', 'all')">Όλες οι ερωτήσεις</div>
-                <div class="chip" onclick="setChip(this, 'count', 5)">5 Ερωτήσεις</div>
-                <div class="chip" onclick="setChip(this, 'count', 10)">10 Ερωτήσεις</div>
             </div>
         </div>
 
@@ -673,16 +757,16 @@
             </div>
         </div>
 
-        <div style="margin-top:35px; text-align:right;">
-            <button class="btn" onclick="launchQuiz()" style="padding: 14px 35px; font-size: 17px;">Έναρξη Test 🚀</button>
+        <div style="margin-top:36px; display:flex; justify-content:space-between; align-items:center;">
+            <button class="btn btn-secondary" onclick="openCheatsheet()">💡 Δες τους Κανόνες</button>
+            <button class="btn btn-accent" onclick="launchQuiz()" style="padding: 16px 36px; font-size: 16px;">Έναρξη Test 🚀</button>
         </div>
     </div>
 
     <div id="play-screen" class="card hidden">
-        <!-- HUD Stats Header -->
         <div class="hud">
             <div class="streak-badge" id="streak-counter">🔥 Streak: 0</div>
-            <div id="score-display" style="font-weight:700;">Score: 0</div>
+            <div id="score-display" style="font-weight:800; font-size: 16px;">Score: 0</div>
             <div class="timer-badge" id="timer-display">⏱️ <span id="timer-val">15</span>s</div>
         </div>
 
@@ -692,38 +776,61 @@
 
         <div class="question-text" id="question-field">Φόρτωση ερώτησης...</div>
         
-        <!-- Dynamic Options or Writing Field -->
         <div id="interaction-field"></div>
+        <div id="explanation-field"></div>
         
-        <div style="margin-top:30px; display:flex; justify-content:space-between; align-items:center;">
-            <span id="q-counter" style="font-weight:600; opacity:0.7;">Ερώτηση 1</span>
+        <div style="margin-top:32px; display:flex; justify-content:space-between; align-items:center;">
+            <span id="q-counter" style="font-weight:700; opacity:0.7;">Ερώτηση 1</span>
             <button class="btn" id="next-btn" onclick="nextQuestion()" disabled>Επόμενο ➡️</button>
         </div>
     </div>
 
     <div id="result-screen" class="card hidden">
         <div class="result-summary">
-            <h2 style="font-size: 28px; font-weight: 800;">Ολοκληρώθηκε! 🎉</h2>
-            
-            <div class="score-circle">
-                <div class="number" id="final-score-percent">0%</div>
-                <div class="label" id="final-score-text">0 / 0 Σωστά</div>
-            </div>
+            <div class="grade-badge" id="final-grade">A+</div>
+            <h2 style="font-size: 26px; font-weight: 800; margin-bottom: 8px;">Αποτελέσματα Test</h2>
+            <p id="final-score-text" style="font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 12px;">0 / 15 Σωστά (0%)</p>
+            <p id="feedback-message" style="font-size: 15px; font-weight: 600; margin-bottom: 24px; opacity: 0.85;"></p>
 
-            <p id="feedback-message" style="font-size:18px; font-weight:600; margin-bottom:20px;">Μπράβο!</p>
-
-            <div style="display:flex; justify-content:center; gap:12px; margin-bottom:25px;">
+            <div style="display:flex; justify-content:center; gap:14px; margin-bottom:28px;">
                 <button class="btn" onclick="showClasses()">🏠 Αρχική</button>
                 <button class="btn btn-secondary" onclick="restartQuiz()">🔄 Επανάληψη</button>
             </div>
 
-            <!-- Detailed Answer Review -->
-            <div style="text-align:left; font-weight:700; font-size:18px; margin-top:20px;">Ανασκόπηση Απαντήσεων:</div>
+            <div style="text-align:left; font-weight:800; font-size:18px; margin-top:20px;">Αναλυτική Αξιολόγηση & Επεξηγήσεις:</div>
             <div class="review-list" id="review-container"></div>
         </div>
     </div>
 
-    <div class="footer-credit">Lexicon Premium Educational Platform &copy; 2000 - 2026</div>
+    <div class="footer-credit">Lexicon Premium Educational Platform &copy; 2026</div>
+</div>
+
+<div id="cheatsheet-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+        <h3>💡 Present Simple vs Present Continuous</h3>
+        <p><strong>1. Present Simple (Απλός Ενεστώτας):</strong></p>
+        <ul>
+            <li><strong>Χρήση:</strong> Συνήθειες, καθημερινό πρόγραμμα, μόνιμες καταστάσεις, γενικές αλήθειες.</li>
+            <li><strong>Λέξεις-κλειδιά:</strong> always, usually, often, sometimes, never, every day, on Mondays.</li>
+            <li><strong>Κανόνας 3ου προσώπου (he/she/it):</strong> Προσθέτουμε <strong>-s</strong> (work ➔ works), <strong>-es</strong> μετά από -ch,-sh,-s,-x,-o (watch ➔ watches), ή <strong>-ies</strong> αν τελειώνει σε σύμφωνο + y (study ➔ studies).</li>
+        </ul>
+
+        <p><strong>2. Present Continuous (Ενεστώτας Διαρκαιότητας):</strong></p>
+        <ul>
+            <li><strong>Χρήση:</strong> Πράξεις που γίνονται τώρα, προσωρινές καταστάσεις, προγραμματισμένα σχέδια.</li>
+            <li><strong>Λέξεις-κλειδιά:</strong> now, at the moment, Look!, Listen!, today, these days.</li>
+            <li><strong>Σχηματισμός:</strong> am / is / are + ρήμα-ing (e.g., She is reading).</li>
+            <li><strong>Ορθογραφικοί κανόνες:</strong>
+                <ul>
+                    <li>write ➔ writing (διώχνουμε το -e)</li>
+                    <li>run ➔ running, swim ➔ swimming (διπλασιάζουμε το σύμφωνο)</li>
+                </ul>
+            </li>
+        </ul>
+        <div style="text-align:right; margin-top:20px;">
+            <button class="btn" onclick="closeCheatsheet()">Κατάλαβα! 👍</button>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -742,16 +849,22 @@ function playSound(type) {
             osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
             osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1); // E5
             gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.3);
-        } else if (type === 'wrong') {
-            osc.frequency.setValueAtTime(220, audioCtx.currentTime); // A3
-            osc.frequency.setValueAtTime(174.61, audioCtx.currentTime + 0.1); // F3
-            gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
             osc.start();
             osc.stop(audioCtx.currentTime + 0.35);
+        } else if (type === 'wrong') {
+            osc.frequency.setValueAtTime(220, audioCtx.currentTime); // A3
+            osc.frequency.setValueAtTime(164.81, audioCtx.currentTime + 0.1); // E3
+            gain.gain.setValueAtTime(0.25, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.4);
+        } else if (type === 'pop') {
+            osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.08);
         }
     } catch(e){}
 }
@@ -761,75 +874,144 @@ function toggleAudio() {
     document.getElementById("sound-btn").innerText = soundEnabled ? "🔊" : "🔇";
 }
 
+const presentSimpleVersusContinuousQuestions = [
+    {
+        type: "multiple",
+        q: "Look! The dog _______ across the street!",
+        a: ["runs", "is running", "run"],
+        correct: 1,
+        explanation: "Χρησιμοποιούμε Present Continuous ('is running') επειδή η λέξη 'Look!' δείχνει ότι η πράξη συμβαίνει αυτή τη στιγμή."
+    },
+    {
+        type: "multiple",
+        q: "My father _______ to work by car every morning.",
+        a: ["goes", "is going", "go"],
+        correct: 0,
+        explanation: "Χρησιμοποιούμε Present Simple ('goes') επειδή το 'every morning' δηλώνει καθημερινή συνήθεια."
+    },
+    {
+        type: "text",
+        q: "Listen! She _______ (sing) her favorite song.",
+        correct: "is singing",
+        explanation: "Η λέξη 'Listen!' φανερώνει ενέργεια που εξελίσσεται τώρα, άρα θέλουμε Present Continuous (is singing)."
+    },
+    {
+        type: "multiple",
+        q: "They _______ TV at the moment.",
+        a: ["don't watch", "aren't watching", "not watching"],
+        correct: 1,
+        explanation: "Το 'at the moment' απαιτεί Present Continuous στην άρνηση: aren't watching."
+    },
+    {
+        type: "text",
+        q: "Γράψε τη σωστή μορφή: 'He usually _______ (study) in the afternoon.'",
+        correct: "studies",
+        explanation: "3ο ενικό (He) στο Present Simple. Το 'study' τελειώνει σε σύμφωνο + y, άρα γίνεται 'studies'."
+    },
+    {
+        type: "multiple",
+        q: "_______ you usually eat breakfast at 8:00 AM?",
+        a: ["Are", "Do", "Does"],
+        correct: 1,
+        explanation: "Για ερώτηση στο Present Simple με υποκείμενο 'you' χρησιμοποιούμε το βοηθητικό ρήμα 'Do'."
+    },
+    {
+        type: "boolean",
+        q: "Στο ρήμα 'write', όταν προσθέτουμε -ing για Present Continuous, διώχνουμε το τελικό 'e' (writing).",
+        a: ["Σωστό / True", "Λάθος / False"],
+        correct: 0,
+        explanation: "Σωστά! Τα ρήματα σε -e χάνουν το -e πριν το -ing (e.g. write ➔ writing)."
+    },
+    {
+        type: "multiple",
+        q: "Shh! Be quiet! The baby _______ right now.",
+        a: ["sleeps", "is sleeping", "sleep"],
+        correct: 1,
+        explanation: "Το 'right now' και το 'Be quiet!' δείχνουν ότι η ενέργεια γίνεται τώρα (is sleeping)."
+    },
+    {
+        type: "text",
+        q: "Συμπλήρωσε το ρήμα: 'Water _______ (boil) at 100 degrees Celsius.'",
+        correct: "boils",
+        explanation: "Πρόκειται για επιστημονική αλήθεια / νόμο της φύσης, άρα χρησιμοποιούμε Present Simple (boils)."
+    },
+    {
+        type: "multiple",
+        q: "Why _______ you wearing a coat today? It isn't cold!",
+        a: ["do", "are", "is"],
+        correct: 1,
+        explanation: "Προσωρινή κατάσταση / ενέργεια σήμερα: 'are you wearing'."
+    },
+    {
+        type: "multiple",
+        q: "I _______ basketball on Saturdays.",
+        a: ["always play", "am plays", "always playing"],
+        correct: 0,
+        explanation: "Τα επιρρήματα συχνότητας (always) μπαίνουν ΠΡΙΝ από το κύριο ρήμα στο Present Simple (always play)."
+    },
+    {
+        type: "text",
+        q: "Γράψε τη σωστή ορθογραφία (-ing): 'Swim' ➔ 'They are _______'",
+        correct: "swimming",
+        explanation: "Το ρήμα swim τελειώνει σε σύμφωνο-φωνήεν-σύμφωνο, άρα διπλασιάζουμε το 'm' (swimming)."
+    },
+    {
+        type: "boolean",
+        q: "Η πρόταση 'He is having three cats' είναι γραμματικά σωστή.",
+        a: ["Σωστό / True", "Λάθος / False"],
+        correct: 1,
+        explanation: "Λάθος! Το ρήμα 'have' όταν δηλώνει ιδιοκτησία είναι stative verb και ΔΕΝ μπαίνει σε Continuous (Σωστό: He has three cats)."
+    },
+    {
+        type: "multiple",
+        q: "Where is Mum? She _______ dinner in the kitchen.",
+        a: ["cooks", "is cooking", "cook"],
+        correct: 1,
+        explanation: "Απάντηση σε ερώτηση για το πού βρίσκεται κάποιος τώρα ➔ Present Continuous (is cooking)."
+    },
+    {
+        type: "text",
+        q: "Συμπλήρωσε την άρνηση: 'She _______ (not / like) football.'",
+        correct: "doesn't like",
+        explanation: "Άρνηση στο Present Simple για She ➔ doesn't + αρχική μορφή ρήματος (doesn't like)."
+    }
+];
+
 const quizData = {
+    "Present Simple & Present Continuous": [
+        {
+            title: "⚡ Present Simple vs Present Continuous (Full 15 Questions)",
+            questions: presentSimpleVersusContinuousQuestions
+        }
+    ],
     "A Class": [
         {
-            title: "🇬🇧 Present Simple (Grammar & Rules)",
-            questions: [
-                { type: "multiple", q: "He _______ to school every day.", a: ["go", "goes", "going"], correct: 1 },
-                { type: "multiple", q: "She _______ (watch) TV in the evening.", a: ["watchs", "watches", "watching"], correct: 1 },
-                { type: "multiple", q: "Do you like apples? Yes, I _______.", a: ["do", "like", "am"], correct: 0 },
-                { type: "text", q: "Γράψε το γ' ενικό (he/she/it) του ρήματος 'STUDY':", correct: "studies" },
-                { type: "boolean", q: "Στο Present Simple, τα ρήματα που τελειώνουν σε -ch, -sh, -ss, -x παίρνουν -es στο 3ο ενικό.", a: ["Σωστό / True", "Λάθος / False"], correct: 0 },
-                { type: "multiple", q: "They _______ play football on Mondays.", a: ["not", "doesn't", "don't"], correct: 2 },
-                { type: "text", q: "Συμπλήρωσε το αρνητικό: 'He _______ (not / like) milk.'", correct: "doesn't like" },
-                { type: "multiple", q: "My brother always _______ his homework after lunch.", a: ["do", "does", "doing"], correct: 1 },
-                { type: "boolean", q: "Η λέξη 'always' μπαίνει ΠΡΙΝ από το κύριο ρήμα (π.χ. She always sleeps early).", a: ["Σωστό / True", "Λάθος / False"], correct: 0 },
-                { type: "text", q: "Γράψε τη σωστή μορφή: 'The sun _______ (rise) in the east.'", correct: "rises" }
-            ]
-        },
-        {
-            title: "Quiz 2: Plural Nouns",
-            questions: [
-                { type: "multiple", q: "One boy, two _______.", a: ["boys", "boies", "boyes"], correct: 0 },
-                { type: "multiple", q: "One child, three _______.", a: ["childs", "children", "childrens"], correct: 1 },
-                { type: "text", q: "Γράψε τον πληθυντικό της λέξης 'BUS':", correct: "buses" }
-            ]
+            title: "🇬🇧 Present Simple vs Present Continuous",
+            questions: presentSimpleVersusContinuousQuestions
         }
     ],
     "B Class": [
         {
-            title: "Quiz 1: Past Simple Regular & Irregular",
-            questions: [
-                { type: "multiple", q: "Yesterday, she _______ a movie.", a: ["watch", "watched", "watching"], correct: 1 },
-                { type: "multiple", q: "Where _______ you go last Sunday?", a: ["did", "do", "were"], correct: 0 },
-                { type: "text", q: "Γράψε τον αόριστο (Past Simple) του ρήματος 'GO':", correct: "went" }
-            ]
+            title: "📙 Past Simple & Continuous Essentials",
+            questions: presentSimpleVersusContinuousQuestions.slice(0, 5)
         }
     ],
     "C Class": [
         {
-            title: "Quiz 1: Comparative & Superlative",
-            questions: [
-                { type: "multiple", q: "An elephant is _______ than a mouse.", a: ["big", "bigger", "biggest"], correct: 1 },
-                { type: "multiple", q: "This is the _______ book in the library.", a: ["interesting", "more interesting", "most interesting"], correct: 2 }
-            ]
+            title: "📗 Present Perfect & Grammar Master",
+            questions: presentSimpleVersusContinuousQuestions.slice(0, 5)
         }
     ],
     "D Class": [
         {
-            title: "Quiz 1: Present Perfect vs Past Simple",
-            questions: [
-                { type: "multiple", q: "I have _______ to London twice.", a: ["been", "gone", "be"], correct: 0 },
-                { type: "multiple", q: "She has _______ her homework yet.", a: ["finish", "not finished", "finished"], correct: 1 }
-            ]
-        }
-    ],
-    "Mixed Tests": [
-        {
-            title: "🏆 Test 1: Full Grammar & Vocabulary Exam",
-            questions: [
-                { type: "multiple", q: "If I were you, I _______ study harder for the exam.", a: ["will", "would", "am"], correct: 1 },
-                { type: "text", q: "Γράψε τον αόριστο (Past Simple) του ρήματος 'TAKE':", correct: "took" },
-                { type: "boolean", q: "Η λέξη 'information' παίρνει πληθυντικό αριθμό (informations).", a: ["Σωστό / True", "Λάθος / False"], correct: 1 },
-                { type: "text", q: "Συμπλήρωσε την πρόθεση: 'She is afraid _______ spiders.'", correct: "of" }
-            ]
+            title: "📕 Advanced Grammar Practice",
+            questions: presentSimpleVersusContinuousQuestions.slice(0, 5)
         }
     ]
 };
 
-let currentClass = "";
-let currentQuizIndex = null;
+let currentClass = "Present Simple & Present Continuous";
+let currentQuizIndex = 0;
 let activeQuestions = [];
 let currentQIndex = 0;
 let userScore = 0;
@@ -838,10 +1020,9 @@ let hasAnswered = false;
 let timerInterval = null;
 let timeLeft = 0;
 
-// Setup Preferences
 let setupConfig = {
     timer: 15,
-    count: 'all',
+    count: 15,
     order: 'normal'
 };
 
@@ -849,6 +1030,17 @@ let userAnswersLog = [];
 
 function toggleDark() {
     document.body.classList.toggle("dark");
+    playSound('pop');
+}
+
+function openCheatsheet() {
+    document.getElementById("cheatsheet-modal").classList.remove("hidden");
+    playSound('pop');
+}
+
+function closeCheatsheet() {
+    document.getElementById("cheatsheet-modal").classList.add("hidden");
+    playSound('pop');
 }
 
 function showClasses() {
@@ -856,9 +1048,14 @@ function showClasses() {
     document.getElementById("class-screen").classList.remove("hidden");
 }
 
+function selectGrammarUnit(unitName) {
+    currentClass = unitName;
+    openSetupScreen(0);
+}
+
 function selectClass(className) {
     currentClass = className;
-    document.getElementById("selected-class-title").innerText = className === "Mixed Tests" ? "🏆 Διαθέσιμα Tests" : "Κουίζ: " + className;
+    document.getElementById("selected-class-title").innerText = "Κουίζ: " + className;
     const listDiv = document.getElementById("quizzes-list");
     listDiv.innerHTML = "";
 
@@ -866,7 +1063,7 @@ function selectClass(className) {
     classQuizzes.forEach((quiz, index) => {
         const box = document.createElement("div");
         box.className = "quiz-box";
-        box.innerHTML = `<span>📝</span><strong>${quiz.title}</strong><span style='font-size:13px; opacity:0.7;'>${quiz.questions.length} Ερωτήσεις</span>`;
+        box.innerHTML = `<span>📝</span><strong>${quiz.title}</strong><span style='font-size:13px; opacity:0.75;'>${quiz.questions.length} Αυθεντικές Ερωτήσεις</span>`;
         box.onclick = () => openSetupScreen(index);
         listDiv.appendChild(box);
     });
@@ -898,6 +1095,7 @@ function openSetupScreen(quizIndex) {
 }
 
 function setChip(element, group, value) {
+    playSound('pop');
     const parent = element.parentElement;
     parent.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
     element.classList.add('selected');
@@ -907,15 +1105,13 @@ function setChip(element, group, value) {
 function launchQuiz() {
     const originalQuestions = [...quizData[currentClass][currentQuizIndex].questions];
     
-    // Shuffle if selected
     if (setupConfig.order === 'shuffle') {
         activeQuestions = originalQuestions.sort(() => Math.random() - 0.5);
     } else {
         activeQuestions = originalQuestions;
     }
 
-    // Limit count if selected
-    if (setupConfig.count !== 'all' && typeof setupConfig.count === 'number') {
+    if (typeof setupConfig.count === 'number') {
         activeQuestions = activeQuestions.slice(0, setupConfig.count);
     }
 
@@ -933,12 +1129,14 @@ function loadQuestion() {
     hasAnswered = false;
     clearInterval(timerInterval);
     document.getElementById("next-btn").disabled = true;
+    document.getElementById("explanation-field").innerHTML = "";
 
     const q = activeQuestions[currentQIndex];
 
-    // HUD Update
-    document.getElementById("streak-counter").innerText = `🔥 Streak: ${streak}`;
-    document.getElementById("score-display").innerText = `Score: ${userScore}`;
+    // HUD Stats Update
+    const streakBadge = document.getElementById("streak-counter");
+    streakBadge.innerText = `🔥 Streak: ${streak}`;
+    document.getElementById("score-display").innerText = `Score: ${userScore * 100}`;
     document.getElementById("q-counter").innerText = `Ερώτηση ${currentQIndex + 1} από ${activeQuestions.length}`;
 
     // Progress Bar
@@ -971,7 +1169,7 @@ function loadQuestion() {
         timerBadge.style.display = "none";
     }
 
-    // Question Rendering
+    // Question Input Types
     if (q.type === "multiple" || q.type === "boolean") {
         const list = document.createElement("div");
         list.className = "options-list";
@@ -989,12 +1187,12 @@ function loadQuestion() {
         const input = document.createElement("input");
         input.type = "text";
         input.className = "text-input";
-        input.placeholder = "Πληκτρολογήστε την απάντησή σας στα Αγγλικά...";
+        input.placeholder = "Γράψτε την απάντηση στα Αγγλικά...";
         
         const submit = document.createElement("button");
         submit.className = "btn";
-        submit.innerText = "Έλεγχος Απάντησης 🔍";
-        submit.onclick = () => evaluateText(input, q.correct, container);
+        submit.innerText = "Έλεγχος 🔍";
+        submit.onclick = () => evaluateText(input, q.correct);
 
         container.appendChild(input);
         container.appendChild(submit);
@@ -1013,10 +1211,13 @@ function evaluateChoice(btn, clickedIdx, correctIdx) {
     buttons.forEach(b => b.disabled = true);
 
     const isCorrect = clickedIdx === correctIdx;
+    showExplanation(isCorrect, q.explanation);
+
     if (isCorrect) {
         btn.classList.add("correct");
         userScore++;
         streak++;
+        triggerStreakAnimation();
         playSound('correct');
     } else {
         btn.classList.add("wrong");
@@ -1029,13 +1230,14 @@ function evaluateChoice(btn, clickedIdx, correctIdx) {
         q: q.q,
         userAns: q.a[clickedIdx],
         correctAns: q.a[correctIdx],
-        isCorrect
+        isCorrect,
+        explanation: q.explanation
     });
 
     document.getElementById("next-btn").disabled = false;
 }
 
-function evaluateText(input, correctText, container) {
+function evaluateText(input, correctText) {
     if (hasAnswered) return;
     const val = input.value.trim();
     if (!val) return;
@@ -1044,33 +1246,30 @@ function evaluateText(input, correctText, container) {
     clearInterval(timerInterval);
     input.disabled = true;
 
+    const q = activeQuestions[currentQIndex];
     const isCorrect = val.toLowerCase() === correctText.toLowerCase();
-    const feedback = document.createElement("div");
-    feedback.className = "feedback-msg";
+    showExplanation(isCorrect, q.explanation);
 
     if (isCorrect) {
         input.classList.add("correct");
-        feedback.innerText = "✅ Σωστό! Μπράβο!";
-        feedback.style.color = "var(--success)";
         userScore++;
         streak++;
+        triggerStreakAnimation();
         playSound('correct');
     } else {
         input.classList.add("wrong");
-        feedback.innerHTML = `❌ Λάθος. Σωστή απάντηση: <strong>${correctText}</strong>`;
-        feedback.style.color = "var(--error)";
         streak = 0;
         playSound('wrong');
     }
 
     userAnswersLog.push({
-        q: activeQuestions[currentQIndex].q,
+        q: q.q,
         userAns: val,
         correctAns: correctText,
-        isCorrect
+        isCorrect,
+        explanation: q.explanation
     });
 
-    container.appendChild(feedback);
     document.getElementById("next-btn").disabled = false;
 }
 
@@ -1082,6 +1281,8 @@ function handleTimeout() {
     streak = 0;
     playSound('wrong');
 
+    showExplanation(false, q.explanation);
+
     if (q.type === "multiple" || q.type === "boolean") {
         const buttons = document.querySelectorAll(".option-btn");
         buttons.forEach(b => b.disabled = true);
@@ -1090,18 +1291,34 @@ function handleTimeout() {
             q: q.q,
             userAns: "⏱️ Έληξε ο χρόνος",
             correctAns: q.a[q.correct],
-            isCorrect: false
+            isCorrect: false,
+            explanation: q.explanation
         });
     } else {
         userAnswersLog.push({
             q: q.q,
             userAns: "⏱️ Έληξε ο χρόνος",
             correctAns: q.correct,
-            isCorrect: false
+            isCorrect: false,
+            explanation: q.explanation
         });
     }
 
     document.getElementById("next-btn").disabled = false;
+}
+
+function triggerStreakAnimation() {
+    const badge = document.getElementById("streak-counter");
+    badge.innerText = `🔥 Streak: ${streak}`;
+    badge.classList.add("bounce");
+    setTimeout(() => badge.classList.remove("bounce"), 300);
+}
+
+function showExplanation(isCorrect, expText) {
+    const box = document.createElement("div");
+    box.className = `explanation-box ${isCorrect ? 'correct' : 'wrong'}`;
+    box.innerHTML = `<strong>${isCorrect ? '✅ Σωστά!' : '❌ Λάθος!'}</strong> ${expText}`;
+    document.getElementById("explanation-field").appendChild(box);
 }
 
 function nextQuestion() {
@@ -1120,31 +1337,38 @@ function finishQuiz() {
     const total = activeQuestions.length;
     const percent = Math.round((userScore / total) * 100);
 
-    document.getElementById("final-score-percent").innerText = percent + "%";
-    document.getElementById("final-score-text").innerText = `${userScore} / ${total} Σωστά`;
+    let grade = "F";
+    if (percent >= 95) grade = "A+";
+    else if (percent >= 85) grade = "A";
+    else if (percent >= 75) grade = "B";
+    else if (percent >= 60) grade = "C";
+
+    document.getElementById("final-grade").innerText = grade;
+    document.getElementById("final-score-text").innerText = `${userScore} / ${total} Σωστά (${percent}%)`;
 
     const msg = document.getElementById("feedback-message");
-    if (percent === 100) {
-        msg.innerText = "🏆 Απόλυτη Επιτυχία! Είσαι τέλειος/α!";
-        if (typeof confetti === 'function') confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-    } else if (percent >= 70) {
-        msg.innerText = "🌟 Πολύ καλό σκορ! Συγχαρητήρια!";
+    if (percent >= 80) {
+        msg.innerText = "🎉 Εξαιρετική επίδοση! Έχεις κατανοήσει πλήρως τη γραμματική!";
+        if (typeof confetti === 'function') confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+    } else if (percent >= 60) {
+        msg.innerText = "👍 Καλή προσπάθεια! Δες τις επεξηγήσεις παρακάτω για βελτίωση.";
     } else {
-        msg.innerText = "📚 Χρειάζεται λίγη ακόμα εξάσκηση. Ξαναδοκίμασε!";
+        msg.innerText = "📚 Χρειάζεται λίγη επανάληψη στους κανόνες. Δοκίμασε ξανά!";
     }
 
-    // Build Detailed Review
+    // Detailed Answers Review List
     const revContainer = document.getElementById("review-container");
     revContainer.innerHTML = "";
-    userAnswersLog.forEach(log => {
+    userAnswersLog.forEach((log, idx) => {
         const item = document.createElement("div");
         item.className = `review-item ${log.isCorrect ? 'is-correct' : 'is-wrong'}`;
         item.innerHTML = `
-            <div style="font-weight:700;">${log.q}</div>
-            <div style="font-size:14px; margin-top:4px;">
-                Η απάντησή σας: <span style="font-weight:600;">${log.userAns}</span> ${log.isCorrect ? '✅' : '❌'}
+            <div style="font-weight:800; font-size:15px;">${idx + 1}. ${log.q}</div>
+            <div style="font-size:14px; margin-top:6px;">
+                Η απάντησή σου: <span style="font-weight:700;">${log.userAns}</span> ${log.isCorrect ? '✅' : '❌'}
             </div>
-            ${!log.isCorrect ? `<div style="font-size:14px; color:var(--success); font-weight:600;">Σωστό: ${log.correctAns}</div>` : ''}
+            ${!log.isCorrect ? `<div style="font-size:14px; color:var(--success); font-weight:700; margin-top:2px;">Σωστή απάντηση: ${log.correctAns}</div>` : ''}
+            <div style="font-size:13px; opacity:0.85; margin-top:6px; font-style:italic;">💡 ${log.explanation}</div>
         `;
         revContainer.appendChild(item);
     });
