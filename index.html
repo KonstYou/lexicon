@@ -880,16 +880,10 @@ document.getElementById("menu").classList.remove("active");
 }
 
 function checkLogin() {
-closeMenuOnly();
-let password = prompt("Παρακαλώ εισάγετε τον κωδικό του Lexicon:");
-if (password === STUDENT_VERIFICATION) {
-window.location.href = "QUIZ PANEL.html";
-} else if (password !== null) {
-alert("Λάθος κωδικός! Προσπαθήστε ξανά.");
+  closeMenuOnly();
+  window.location.href = "QUIZ PANEL.html";
 }
-}
-
-
+  
   // ================= FAQ ACCORDION =================
 function toggleFaq(element) {
     const faqItem = element.parentElement;
